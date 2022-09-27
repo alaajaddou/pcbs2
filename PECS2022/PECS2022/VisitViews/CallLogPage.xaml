@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:PECS2022.VisitViews"
+             mc:Ignorable="d"  
+             x:Class="PECS2022.VisitViews.CallLogPage">
+    
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Picker">
+                <Setter Property="FlowDirection" Value="RightToLeft"/>
+            </Style>
+            <Style TargetType="Editor">
+                <Setter Property="FlowDirection" Value="RightToLeft"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <NavigationPage.TitleView>
+        <Label Text="سجل الاتصال" Style="{StaticResource LabelSection}"  HorizontalTextAlignment="Center"/>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <Grid>
+
+            <Grid.Padding>
+                <OnPlatform x:TypeArguments="Thickness" Default="{StaticResource MasterDetailPaddingRL}">
+                    <On Platform="Android" Value="{StaticResource MasterDetailPaddingLR}"/>
+                </OnPlatform>
+            </Grid.Padding>
+
+            <Frame StyleClass="Card">
+                <StackLayout>
+                    <local:CallLogView x:Name="vwCallView"></local:CallLogView>
+                </StackLayout>
+
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

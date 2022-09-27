@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PECS2022.VisitViews"
+             x:Class="PECS2022.VisitViews.MembersDetails"
+              NavigationPage.HasNavigationBar="False"
+             StyleClass="MasterDetail">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Picker">
+                <Setter Property="FlowDirection" Value="RightToLeft"/>
+            </Style>
+            <Style TargetType="Editor">
+                <Setter Property="FlowDirection" Value="RightToLeft"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+
+            <Grid.Padding>
+                <OnPlatform x:TypeArguments="Thickness" Default="{StaticResource MasterDetailPaddingRL}">
+                    <On Platform="Android" Value="{StaticResource MasterDetailPaddingLR}"/>
+                </OnPlatform>
+            </Grid.Padding>
+
+
+            <Grid>
+
+                <Grid.Padding>
+                    <OnPlatform x:TypeArguments="Thickness" Default="{StaticResource MasterDetailPaddingRL}">
+                        <On Platform="Android" Value="{StaticResource MasterDetailPaddingLR}"/>
+                    </OnPlatform>
+                </Grid.Padding>
+
+                <Frame StyleClass="Card">
+                    <Grid>
+                        <StackLayout Grid.Column="0" Grid.Row="0">
+
+                            <Grid BackgroundColor="LightGray"  MinimumHeightRequest="80">
+
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="Medium" x:Name="lblNumberOfIndiv"></Label>
+
+                                <Grid Grid.Row="0" Grid.Column="0" MinimumHeightRequest="80">
+
+
+                                    <Button MinimumWidthRequest="50" WidthRequest="50"    HeightRequest="50"    CornerRadius="25"    VerticalOptions="Center"
+    HorizontalOptions="Center"  Grid.Column="0" Text="&#xf1ec;" FontAttributes="Bold" FontFamily="{StaticResource FontAwesomeSolid}"  StyleClass="Default"   Clicked="Button_Clicked" ></Button>
+
+                                    <Button MinimumWidthRequest="50" WidthRequest="50"    HeightRequest="50"    CornerRadius="25"    VerticalOptions="Center"
+    HorizontalOptions="Center"  Grid.Column="1" Text="&#xf885;" FontAttributes="Bold" FontFamily="{StaticResource FontAwesomeSolid}"  StyleClass="Green"  x:Name="btnMemberOrder" Clicked="BtnMemberOrder_Clicked" ></Button>
+
+                                </Grid>
+
+                                <Grid Grid.Row="0" Grid.Column="2"  HorizontalOptions="End"  MinimumHeightRequest="80">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Button MinimumWidthRequest="50" WidthRequest="50"    HeightRequest="50"    CornerRadius="25" x:Name="btnPrvious"    VerticalOptions="Center"    HorizontalOptions="Center"  Grid.Column="0" Text="&#xf0a9;" FontAttributes="Bold" FontFamily="{StaticResource FontAwesomeSolid}"  StyleClass="Default"   Clicked="btnPrvious_Clicked" ></Button>
+                                    <Button MinimumWidthRequest="50" WidthRequest="50"    HeightRequest="50"    CornerRadius="25" x:Name="btnNext"   VerticalOptions="Center"    HorizontalOptions="Center"  Grid.Column="1" Text="&#xf0a8;" FontAttributes="Bold" FontFamily="{StaticResource FontAwesomeSolid}"  StyleClass="Default"   Clicked="btnNext_Clicked" ></Button>
+                                    <Button MinimumWidthRequest="50" WidthRequest="50"    HeightRequest="50"     CornerRadius="25" x:Name="btnSaveAndComplete"   VerticalOptions="Center"    HorizontalOptions="Center"  Grid.Column="2" Text="&#xf0c7;" FontAttributes="Bold" FontFamily="{StaticResource FontAwesomeSolid}"   StyleClass="Green"  Clicked="btnSaveAndComplete_Clicked" ></Button>
+                                    <Button MinimumWidthRequest="50" WidthRequest="50"    HeightRequest="50"     CornerRadius="25" x:Name="btnDelete"   VerticalOptions="Center"    HorizontalOptions="Center"  Grid.Column="3" Text="&#xf503;" FontAttributes="Bold" FontFamily="{StaticResource FontAwesomeSolid}"   StyleClass="Red"  Clicked="BtnDelete_Clicked" ></Button>
+                                    <Button MinimumWidthRequest="50" WidthRequest="50"    HeightRequest="50"     CornerRadius="25" x:Name="btnAddNew"   VerticalOptions="Center"    HorizontalOptions="Center"  Grid.Column="4" Text="&#xf234;" FontAttributes="Bold" FontFamily="{StaticResource FontAwesomeSolid}"   StyleClass="Blue"  Clicked="btnAddNew_Clicked" ></Button>
+
+
+
+                                    <!--<Button  Grid.Column="0" Grid.Row="0" HorizontalOptions="Start"   Text="الفرد السابق"  Clicked="btnPrvious_Clicked"></Button>-->
+                                    <!--<Button  Grid.Column="1" Grid.Row="0" HorizontalOptions="Start"   Text="الفرد التالي"  Clicked="btnNext_Clicked"></Button>-->
+                                    <!--<Button  Grid.Column="2" Grid.Row="0" StyleClass="Green" HorizontalOptions="Start"  IsVisible="True"   Text="حفظ وانهاء" x:Name="btnSaveAndComplete" Clicked="btnSaveAndComplete_Clicked"></Button>-->
+                                    <!--<Button  Grid.Column="3" Grid.Row="0" StyleClass="Red" HorizontalOptions="Start"  IsVisible="True"   Text="حذف فرد" x:Name="btnDelete" Clicked="BtnDelete_Clicked"></Button>-->
+                                    <!--<Button   Grid.Column="4" Grid.Row="0" StyleClass="Blue" HorizontalOptions="Start"  IsVisible="True"  Text="إضافة فرد جديد" x:Name="btnAddNew" Clicked="btnAddNew_Clicked"></Button>-->
+
+
+
+                                </Grid>
+
+
+
+                            </Grid>
+
+
+
+                            <local:MemberView  x:Name="MemberView"></local:MemberView>
+                        </StackLayout>
+
+                        <Grid  x:Name="pnlMembersStatistics" BackgroundColor="#6fd0fb"  WidthRequest="500"  IsVisible="False"  Padding="5"
+            HorizontalOptions="Center"  VerticalOptions="Center">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="70"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+
+                                <RowDefinition Height="40"></RowDefinition>
+
+                            </Grid.RowDefinitions>
+
+                            <Label BackgroundColor="White" Grid.Column="0" Grid.Row="0" FontSize="Large" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">احصائيات افراد الاسرة</Label>
+
+                            <Grid Grid.Column="0" Grid.Row="1" BackgroundColor="#6e6e6e" RowSpacing="3" ColumnSpacing="3" Padding="5">
+
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition  Width="40"></ColumnDefinition>
+
+                                </Grid.ColumnDefinitions>
+
+                                <Label  BackgroundColor="#cbcbcb" Grid.Column="0" Grid.Row="0" Text="QC5_T-عدد أفراد الأسرة المعيشية" ></Label>
+                                <Label  FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="White"  Grid.Column="1" Grid.Row="0" x:Name="lblIR0X" ></Label>
+                                <Label  BackgroundColor="#cbcbcb" Grid.Column="0" Grid.Row="1"  Text="QC5_M - مجموع أفراد الأسرة الذكور 18 سنة فأكثر" ></Label>
+                                <Label FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  BackgroundColor="White" Grid.Column="1" Grid.Row="1" x:Name="lblIR04"  ></Label>
+
+                                <Label  BackgroundColor="#cbcbcb" Grid.Column="0" Grid.Row="2" Text="QC5_F - مجموع أفراد الأسرة الإناث 18 سنة فأكثر"  ></Label>
+                                <Label  FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="White" Grid.Column="1" Grid.Row="2" x:Name="lblIR05" ></Label>
+
+
+
+                            </Grid>
+
+                            <Button Grid.Column="0" Grid.Row="2" StyleClass="Red" Text="اغلاق" x:Name="btnClose" Clicked="btnClose_Clicked"></Button>
+
+
+                        </Grid>
+
+                        <Grid  x:Name="pnlMembersOrder" BackgroundColor="#ffffff"  WidthRequest="500" HeightRequest="400"  IsVisible="False"  Padding="5"
+            HorizontalOptions="Center"  VerticalOptions="Center" >
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="70"></RowDefinition>
+                                <RowDefinition Height="70"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+
+                                <RowDefinition Height="40"></RowDefinition>
+
+                            </Grid.RowDefinitions>
+
+                            <Label BackgroundColor="#f0f0f0" Grid.Column="0" Grid.Row="0" FontSize="Large" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">ترتيب افراد الاسرة</Label>
+
+                            <StackLayout  Grid.Column="0" Grid.Row="1" >
+                                <Label>الجنس</Label>
+                                <Picker x:Name="cmbSex2" SelectedIndexChanged="CmbSex2_SelectedIndexChanged"></Picker>
+
+                            </StackLayout>
+
+                            <ScrollView Grid.Column="0" Grid.Row="2" >
+                                <StackLayout x:Name="lstSex" >
+
+                                </StackLayout>
+                            </ScrollView>
+
+                            <Button Grid.Column="0" Grid.Row="3" StyleClass="Red" Text="اغلاق" x:Name="btnClose2" Clicked="btnClose_Clicked"></Button>
+
+
+                        </Grid>
+
+                    </Grid>
+
+                </Frame>
+            </Grid>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

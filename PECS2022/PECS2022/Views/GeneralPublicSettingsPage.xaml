@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PECS2022.ViewModels"
+             x:Class="PECS2022.Views.GeneralPublicSettingsPage"
+            Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <local:AppSettingsViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid Padding="{StaticResource PagePadding}">
+                <ScrollView>
+                    <Frame StyleClass="Card">
+
+                        <StackLayout VerticalOptions="Center" Spacing="10">
+                            <Image HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="140">
+                                <Image.Source>
+                                    <OnPlatform x:TypeArguments="FileImageSource">
+                                        <On Platform="Android" Value="logo.png" ></On>
+                                        <On Platform="UWP"  Value="images/logo.png"></On>
+                                    </OnPlatform>
+                                </Image.Source>
+                            </Image>
+
+                            <Label Text="الخادم الرئيسي"  FontAttributes="Bold" Margin="0,20,0,0" />
+                            <Entry x:Name="txtWEPServer" Placeholder="الخادم الرئيسي"  PlaceholderColor="#c4c4c4" />
+                            <Label Text="مسار قواعد البيانات الجغرافية"  FontAttributes="Bold" />
+                            <StackLayout Orientation="Horizontal">
+                                <Entry x:Name="txtGeoDatabasePath" IsEnabled="False"  HorizontalOptions="FillAndExpand"  PlaceholderColor="#c4c4c4" />
+                                <Button x:Name="btnSelectGEOPath" Text="..." VerticalOptions="End" HorizontalOptions="End" Clicked="btnSelectGEOPath_Clicked"></Button>
+                            </StackLayout>
+
+                            <Label Text="مسار الخرائط"  FontAttributes="Bold"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Entry x:Name="txtTPKPath" IsEnabled="False"   VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand"    PlaceholderColor="#c4c4c4" />
+                                <Button x:Name="btnSelectTPKPath" Text="..." VerticalOptions="End" HorizontalOptions="End" Clicked="btnSelectTPKPath_Clicked"></Button>
+                            </StackLayout>
+
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Button  StyleClass="Green" x:Name="btnSaveChanges" Grid.Column="0" Grid.Row="0" Text="حفظ الاعدادات" Clicked="btnSaveChanges_Clicked" VerticalOptions="FillAndExpand" />
+                            </Grid>
+
+                            <Label x:Name="messageLabel" />
+                        </StackLayout>
+                    </Frame>
+                </ScrollView>
+            </Grid>
+
+            <ContentView ControlTemplate="{StaticResource LoadingLayout}" IsVisible="{Binding IsBusy}"/>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pro="clr-namespace:PECS2022.Views"
+             x:Class="PECS2022.Views.BuildingPage" 
+             NavigationPage.HasNavigationBar="True" Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontAttributes" Value="None"/>
+            </Style>
+            <FontAttributes x:Key="BoldLbl">Bold</FontAttributes>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+
+        <Grid Padding="{StaticResource PagePadding}" ColumnSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" ></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid  Grid.Column="0"  Grid.RowSpan="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Frame Grid.Column="0" Grid.Row="0" StyleClass="Card">
+
+                    <StackLayout>
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical" Spacing="3">
+                            <Label Text="اضافة عينة للمبنى :"  HorizontalOptions="StartAndExpand" FontAttributes="Bold"/>
+                            <Picker x:Name="samplesNotInBuildings" ItemDisplayBinding="{Binding Description}" HorizontalOptions="FillAndExpand" Title="اختيار العينة للاضافة"/>
+                            <Button x:Name="btnAddSampleToBuilding"  StyleClass="Green" Text="اضافة" WidthRequest="90" Clicked="btnAddSampleToBuilding_Clicked" HorizontalOptions="End"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Frame  StyleClass="Card" Grid.Column="0" Grid.Row="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" ></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid  Grid.Row="0">
+                            <Entry x:Name="txtSearch" TextChanged="txtSearch_TextChanged" Placeholder="البحث في العينات"></Entry>
+                        </Grid>
+                        <ScrollView Grid.Row="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="45" ></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <ListView   x:Name="lstSamples"   Grid.Column="0" Grid.Row="0" SeparatorVisibility="Default"  RowHeight="60" ItemSelected="lstSamples_ItemSelected">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+
+                                                <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand"  Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                                                    <Image Source="{Binding ImageURL}">
+
+                                                    </Image>
+                                                    <Label   VerticalTextAlignment="Center" Text="{Binding Description}" FontAttributes="None" FontSize="Default" LineBreakMode="WordWrap" />
+                                                </StackLayout>
+                                            </ViewCell>
+
+                                        </DataTemplate>
+
+                                    </ListView.ItemTemplate>
+
+                                </ListView>
+                            </Grid>
+                        </ScrollView>
+
+                    </Grid>
+                </Frame>
+            </Grid>
+
+
+            <Frame Grid.Column="1"  StyleClass="Card">
+                <ScrollView>
+
+                    <StackLayout>
+                    <pro:SampleView x:Name="sampleView"></pro:SampleView>
+                    <Grid Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="3">
+                            <Button StyleClass="Green" Grid.Column="0" x:Name="btnStartVisit" Text="البدء في الزيارة" Clicked="btnStartVisit_Clicked" IsEnabled="False"></Button>
+                            <Button StyleClass="Red" Grid.Column="1" x:Name="btnRemoveSample" Text="تغيير الموقع" Clicked="btnRemoveSampleFromBuilding_Clicked" IsEnabled="False"></Button>
+                        </Grid>
+
+                    </StackLayout>
+
+
+
+                </ScrollView>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PECS2022.ViewModels"
+             xmlns:pro="clr-namespace:PECS2022.Views"
+             x:Class="PECS2022.Views.SampleListPage" NavigationPage.HasNavigationBar="True" Title="{Binding Title}">
+
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontAttributes" Value="None"/>
+            </Style>
+            <FontAttributes x:Key="BoldLbl">Bold</FontAttributes>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+
+        <Grid Padding="{StaticResource PagePadding}" ColumnSpacing="10">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+
+            </Grid.ColumnDefinitions>
+
+
+
+            <Grid  Grid.Column="0" Grid.Row="0"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" ></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+
+                <Frame StyleClass="Card" Grid.Column="0" Grid.Row="0">
+                    <Entry x:Name="txtSearch" TextChanged="txtSearch_TextChanged" Placeholder="البحث في العينات"></Entry>
+                </Frame>
+
+
+                <Frame StyleClass="Card" Grid.Column="0" Grid.Row="1">
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Picker Grid.Row="0" x:Name="picker"  Title="عرض العينات حسب :" SelectedIndexChanged="Picker_SelectedIndexChanged">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>مسكن في التجمع الحالي</x:String>
+                                    <x:String>غير مسكن</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                        
+                        <ScrollView Grid.Row="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+
+                                </Grid.RowDefinitions>
+                                <ListView x:Name="lstSamples" Grid.Column="0" Grid.Row="0"   SeparatorVisibility="Default"  RowHeight="60" ItemSelected="lstSamples_ItemSelected">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand"  Orientation="Horizontal"  VerticalOptions="FillAndExpand">
+                                                    <Image Source="{Binding ImageURL}">
+                                                    </Image>
+                                                    <!--<StackLayout Padding="10" Margin="5"   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">-->
+                                                        <Label  Text="{Binding Description}" FontSize="Default" FontAttributes="None" LineBreakMode="WordWrap" VerticalTextAlignment="Center"/>
+                                                    <!--</StackLayout>-->
+                                                    
+                                                    <!--<Label VerticalOptions="StartAndExpand"   VerticalTextAlignment="Start"  Text="{Binding Description}"   LineBreakMode="WordWrap"   FontSize="Default"/>-->
+                                                </StackLayout>
+                                            </ViewCell>
+
+                                        </DataTemplate>
+
+                                    </ListView.ItemTemplate>
+
+                                </ListView>
+
+                            </Grid>
+                        </ScrollView>
+                    </Grid>
+                </Frame>
+            </Grid>
+
+
+            <Frame Grid.Column="1" Grid.Row="0" StyleClass="Card">
+                <ScrollView>
+                    <StackLayout>
+                      <pro:SampleView x:Name="sampleView"></pro:SampleView>
+                      <Button StyleClass="Green" x:Name="btnFindInMap" IsVisible="False"   Text="إظهار على الخريطة" Clicked="btnFindInMap_Clicked"></Button>
+                    </StackLayout>
+                </ScrollView>
+            </Frame>
+
+
+
+
+
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
+             xmlns:grid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:JUSS2Style="clr-namespace:PECS2022.StyleSheets"
+             xmlns:PECS2022="clr-namespace:PECS2022"
+             x:Class="PECS2022.VisitViews.QuestionEvalPage"
+             NavigationPage.HasNavigationBar="False"
+              StyleClass="MasterDetail">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <JUSS2Style:PCBSGridStyle x:Key="dark" />
+            <Style TargetType="Picker">
+                <Setter Property="FlowDirection" Value="RightToLeft"/>
+            </Style>
+            <Style TargetType="Editor">
+                <Setter Property="FlowDirection" Value="RightToLeft"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content >
+
+        <Grid>
+            
+            <Grid.Padding>
+                <OnPlatform x:TypeArguments="Thickness" Default="{StaticResource MasterDetailPaddingRL}">
+                    <On Platform="Android" Value="{StaticResource MasterDetailPaddingLR}"/>
+                </OnPlatform>
+            </Grid.Padding>
+
+            <Frame StyleClass="Card">
+                <StackLayout>
+
+                    <Frame BorderColor="DarkBlue" BackgroundColor="LightBlue">
+                        <StackLayout>
+                            <Label FontSize="Large">ملاحظات اسئلة الاستمارة</Label>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="80"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+
+                                <Label Grid.Column="0" Grid.Row="0">رمز السؤال</Label>
+                                <Label Grid.Column="1" Grid.Row="0">الملاحظة</Label>
+                                <Label Grid.Column="2" Grid.Row="0"></Label>
+
+                                <Entry  Grid.Column="0" Grid.Row="1" x:Name="txtQCode" Placeholder="إضافة رمز السؤال"></Entry>
+                                <PECS2022:CustomEditor x:Name="txtComments" Placeholder="إضافة ملاحظة" Grid.Column="1" Grid.Row="1"></PECS2022:CustomEditor>
+                                <Button Grid.Column="2" Grid.Row="1" StyleClass="Green" Text="إضافة" Clicked="Button_Clicked"></Button>
+
+
+
+                            </Grid>
+
+                        </StackLayout>
+
+                    </Frame>
+
+                    <grid:SfDataGrid  AllowResizingColumn="True"  GridStyle="{StaticResource dark}" x:Name="dataGrid" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSizer="Star" AllowTriStateSorting="True" AllowEditing="False" AllowSorting="True" AutoGenerateColumns="False">
+
+                        <grid:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+
+                            <grid:GridTextColumn HeaderText="رمز السؤال"
+                                   MappingName="Code" />
+                            <grid:GridTextColumn MappingName="Comments" HeaderText="الملاحظة" />
+
+
+
+                        </grid:SfDataGrid.Columns>
+                    </grid:SfDataGrid>
+
+
+
+
+                </StackLayout>
+
+            </Frame>
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

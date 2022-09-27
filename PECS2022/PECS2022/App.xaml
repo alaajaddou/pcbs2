@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PECS2022.App"
+              xmlns:local="clr-namespace:PECS2022"
+            
+             >
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <OnPlatform x:TypeArguments="x:String" 
+                x:Key="FontAwesomeBrands">
+                <On Platform="Android" 
+          Value="FontAwesome5Brands.otf#Regular" />
+                <On Platform="iOS" 
+          Value="FontAwesome5Brands-Regular" />
+                <On Platform="UWP" 
+          Value="/Assets/FontAwesome5Brands.otf#Font Awesome 5 Brands" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" 
+                x:Key="FontAwesomeSolid">
+                <On Platform="Android" 
+          Value="FontAwesome5Solid.otf#Regular" />
+                <On Platform="iOS" 
+          Value="FontAwesome5Free-Solid" />
+                <On Platform="UWP" 
+          Value="/Assets/FontAwesome5Solid.otf#Font Awesome 5 Free" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" 
+                x:Key="FontAwesomeRegular">
+                <On Platform="Android" 
+          Value="FontAwesome5Regular.otf#Regular" />
+                <On Platform="iOS" 
+          Value="FontAwesome5Free-Regular" />
+                <On Platform="UWP" 
+          Value="/Assets/FontAwesome5Regular.otf#Font Awesome 5 Free" />
+            </OnPlatform>
+
+            <!-- Seperators Template-->
+
+            <ControlTemplate x:Key="Seperator_2">
+                <BoxView HeightRequest="2"/>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="Seperator_5">
+                <BoxView HeightRequest="5"/>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="Seperator_10">
+                <BoxView HeightRequest="10"/>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="Seperator_15">
+                <BoxView HeightRequest="15"/>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="Seperator_20">
+                <BoxView HeightRequest="20"/>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="Seperator_40">
+                <BoxView HeightRequest="40"/>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="Seperator_50">
+                <BoxView HeightRequest="50"/>
+            </ControlTemplate>
+
+
+            <!-- Panel Overlay Layout Template-->
+            <ControlTemplate x:Key="PanelOverlayLayout">
+                <RelativeLayout>
+                    <StackLayout  BackgroundColor="Black" Opacity="0.5" HorizontalOptions="Fill" VerticalOptions="Fill"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1, Constant=0}"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}"/>
+                </RelativeLayout>
+            </ControlTemplate>
+
+            <!-- Close Layout Template-->
+
+            <ControlTemplate x:Key="CloseLayout">
+                <StackLayout Margin="0,0,0,5" Spacing="0">
+                    <Image HorizontalOptions="End" VerticalOptions="Center" HeightRequest="38">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                    Tapped="CloseLayout_Tapped" />
+                        </Image.GestureRecognizers>
+                        <Image.Source>
+                            <OnPlatform x:TypeArguments="FileImageSource">
+                                <On Platform="Android" Value="close.png" ></On>
+                                <On Platform="UWP"  Value="images/close.png"></On>
+                            </OnPlatform>
+                        </Image.Source>
+                    </Image>
+                </StackLayout>
+            </ControlTemplate>
+
+            <!-- Vertical Loading Layout Template-->
+            <ControlTemplate x:Key="VerticalLoadingLayout">
+                <StackLayout Orientation="Vertical">
+                    <Label Text="الرجاء الإنتظار ... " FontSize="18" HorizontalOptions="Center"/>
+                    <ActivityIndicator  IsRunning="True" HorizontalOptions="Center" HeightRequest="35"/>
+                </StackLayout>
+            </ControlTemplate>
+
+            <!-- Horizontal Loading Layout Template-->
+            <ControlTemplate x:Key="HorizontalLoadingLayout">
+                <StackLayout Orientation="Horizontal">
+                    <ActivityIndicator  IsRunning="True" VerticalOptions="Center" HeightRequest="35"/>
+                    <Label Text="الرجاء الإنتظار ..." FontSize="18" VerticalOptions="Center" />
+                </StackLayout>
+            </ControlTemplate>
+
+            <!-- Card Loading Layout Template-->
+            <ControlTemplate x:Key="LoadingLayout">
+
+                <RelativeLayout>
+                    <StackLayout  BackgroundColor="Black" Opacity="0.5" HorizontalOptions="Fill" VerticalOptions="Fill"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1, Constant=0}"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}"/>
+
+                    <Frame StyleClass="Card" BackgroundColor="{StaticResource PrimaryLightColor}"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=0.4, Constant=0}"
+                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.3, Constant=0}"
+                         RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5, Constant=-50}"
+                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+                        <StackLayout>
+                            <Label Text="الرجاء الإنتظار ..." FontAttributes ="Bold"  FontSize="25" HorizontalOptions="Center" TextColor="{StaticResource PrimaryTextColor}"/>
+                            <ActivityIndicator IsRunning="True" HeightRequest="40" HorizontalOptions="Center" Color="{StaticResource SecondaryColor}"/>
+                        </StackLayout>
+
+                    </Frame>
+                </RelativeLayout>
+            </ControlTemplate>
+
+            <!-- Thickness (Like Paddings,Marings) -->
+            <Thickness x:Key="PagePadding" Left="15" Top="15" Right="15" Bottom="15"/>
+
+            <!-- Colors -->
+            <Color x:Key="PrimaryColor">#11547b</Color>
+            <Color x:Key="PrimaryLightColor">#4b80aa</Color>
+            <Color x:Key="PrimaryDarkColor">#002c4f</Color>
+            <Color x:Key="SecondaryColor">#14B3E4</Color>
+            <Color x:Key="SecondaryLightColor">#c0ffff</Color>
+            <Color x:Key="SecondaryDarkColor">#59a8bf</Color>
+            <Color x:Key="PrimaryTextColor">#ffffff</Color>
+            <Color x:Key="SecondaryTextColor">#000000</Color>
+            <Color x:Key="PageBackgroundColor">#f5f5f5</Color>
+
+            <Color x:Key="ControlEnabledColor">#ffffff</Color>
+            <Color x:Key="ControlDisabledColor">#cccccc</Color>
+
+            <!-- Controls Style -->
+
+            <Style TargetType="Frame"  Class="Card">
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="BorderColor" Value="#ebebeb"/>
+            </Style>
+
+            <Style TargetType="Frame" x:Key="FrameDefault">
+                <Setter Property="BackgroundColor" Value="#ededed"></Setter>
+                <Setter Property="BorderColor" Value="#bcbcbc"></Setter>
+
+            </Style>
+
+            <Style TargetType="Frame" x:Key="FrameOrange">
+                <Setter Property="BackgroundColor" Value="#ffc664"></Setter>
+                <Setter Property="BorderColor" Value="#d5972b"></Setter>
+
+            </Style>
+
+
+            <Style TargetType="Frame" x:Key="FrameBlue">
+                <Setter Property="BackgroundColor" Value="#93ddff"></Setter>
+                <Setter Property="BorderColor" Value="#26b7fb"></Setter>
+
+            </Style>
+
+
+            <Style TargetType="Frame" x:Key="FrameGreen">
+
+                <Setter Property="BackgroundColor" Value="#bcf3dd"></Setter>
+                <Setter Property="BorderColor" Value="#148e5d"></Setter>
+
+            </Style>
+
+            <Style TargetType="Frame" x:Key="FrameYellow">
+
+
+                <Setter Property="BackgroundColor" Value="#f7ebc8"></Setter>
+                <Setter Property="BorderColor" Value="#eab71d"></Setter>
+
+            </Style>
+
+            <Style TargetType="Label"  x:Key="LabelSection">
+
+                <Setter Property="TextColor" Value="Black"></Setter>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+                <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black"></Setter>
+                <Setter Property="FontFamily" Value="Tahoma"></Setter>
+                <Setter Property="FontSize" Value="Default"></Setter>
+
+            </Style>
+
+
+            <Style x:Key="ButtonBaseStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource SecondaryColor}"/>
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"/>
+                <Setter Property="FontSize" Value="Default"/>
+            </Style>
+
+            <Style TargetType="Button" BasedOn="{StaticResource ButtonBaseStyle}">
+            </Style>
+
+            <Style TargetType="Button" Class="Red"  BasedOn="{StaticResource ButtonBaseStyle}">
+                <Setter Property="BackgroundColor" Value="#ff0030"/>
+            </Style>
+
+            <Style TargetType="Button" Class="Green"  BasedOn="{StaticResource ButtonBaseStyle}">
+                <Setter Property="BackgroundColor" Value="#1bdb2d"/>
+            </Style>
+
+            <Style TargetType="Button" Class="Orange"  BasedOn="{StaticResource ButtonBaseStyle}">
+                <Setter Property="BackgroundColor" Value="orange"/>
+            </Style>
+
+            <Style TargetType="Button" Class="Blue"  BasedOn="{StaticResource ButtonBaseStyle}">
+                <Setter Property="BackgroundColor" Value="#2470e8"/>
+            </Style>
+
+            <!--<Style TargetType="Label">
+                <Setter Property="FontSize" Value="{OnPlatform iOS=Medium,
+                            Android=Medium}"/>
+                <Setter Property="FontAttributes" Value="{OnPlatform iOS=Bold,
+                            Android=Bold}"/>
+            </Style>-->
+
+            <Style TargetType="Entry">
+                <Style.Triggers>
+                    <Trigger TargetType="Entry" Property="IsEnabled" Value="true">
+                        <Setter Property="BackgroundColor" Value="{OnPlatform iOS={StaticResource ControlEnabledColor},
+                            Android={StaticResource ControlEnabledColor}}" />
+                    </Trigger>
+
+                    <Trigger TargetType="Entry" Property="IsEnabled" Value="false">
+                        <Setter Property="BackgroundColor" Value="{OnPlatform iOS={StaticResource ControlDisabledColor},
+                            Android={StaticResource ControlDisabledColor}}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style TargetType="Picker">
+                <Style.Triggers>
+                    <Trigger TargetType="Picker" Property="IsEnabled" Value="true">
+                        <Setter Property="BackgroundColor" Value="{OnPlatform iOS={StaticResource ControlEnabledColor},
+                            Android={StaticResource ControlEnabledColor}}" />
+                    </Trigger>
+
+                    <Trigger TargetType="Picker" Property="IsEnabled" Value="false">
+                        <Setter Property="BackgroundColor" Value="{OnPlatform iOS={StaticResource ControlDisabledColor},
+                            Android={StaticResource ControlDisabledColor}}" />
+                    </Trigger>
+
+                </Style.Triggers>
+
+
+            </Style>
+
+
+            <Style TargetType="local:MpPicker">
+                <Style.Triggers>
+                    <Trigger TargetType="local:MpPicker" Property="IsEnabled" Value="true">
+                        <Setter Property="BackgroundColor" Value="{OnPlatform iOS={StaticResource ControlEnabledColor},
+                            Android={StaticResource ControlEnabledColor}}" />
+                    </Trigger>
+
+                    <Trigger TargetType="local:MpPicker" Property="IsEnabled" Value="false">
+                        <Setter Property="BackgroundColor" Value="{OnPlatform iOS={StaticResource ControlDisabledColor},
+                            Android={StaticResource ControlDisabledColor}}" />
+                    </Trigger>
+
+
+                </Style.Triggers>
+                <Setter Property="FlowDirection" Value="RightToLeft"></Setter>
+            </Style>
+
+            <!-- Pages Style -->
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="FlowDirection" Value="RightToLeft"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource PageBackgroundColor}"/>
+            </Style>
+
+            <Style TargetType="MasterDetailPage" ApplyToDerivedTypes="True">
+                <Setter Property="FlowDirection">
+                    <OnPlatform  x:TypeArguments="FlowDirection" Default="RightToLeft">
+                        <On Platform="Android">LeftToRight</On>
+                    </OnPlatform>
+                </Setter>
+            </Style>
+
+            <Thickness x:Key="MasterDetailPaddingRL" Left="5" Top="15" Right="15" Bottom="15"/>
+            <Thickness x:Key="MasterDetailPaddingLR" Left="15" Top="15" Right="5" Bottom="15"/>
+
+
+            <Style TargetType="ContentPage" Class="MasterDetail" ApplyToDerivedTypes="True">
+
+                <Setter Property="FlowDirection">
+                    <OnPlatform  x:TypeArguments="FlowDirection" Default="LeftToRight">
+                        <On Platform="Android">RightToLeft</On>
+                    </OnPlatform>
+                </Setter>
+            </Style>
+
+            <Style TargetType="Button" x:Key="BlueButton">
+                <Setter Property="BackgroundColor" Value="Blue"></Setter>
+                <Setter Property="TextColor" Value="White"></Setter>
+            </Style>
+            <Style TargetType="Button" x:Key="RedButton">
+                <Setter Property="BackgroundColor" Value="Red"></Setter>
+                <Setter Property="TextColor" Value="White"></Setter>
+            </Style>
+
+            <Style TargetType="Button" x:Key="GreenButton">
+                <Setter Property="BackgroundColor" Value="#158e5c"></Setter>
+                <Setter Property="TextColor" Value="White"></Setter>
+            </Style>
+        </ResourceDictionary>
+
+    </Application.Resources>
+</Application>

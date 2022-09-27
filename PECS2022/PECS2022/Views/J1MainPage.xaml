@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                     xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms" 
+              xmlns:JUSS2Style="clr-namespace:PECS2022.StyleSheets"
+             xmlns:Local="clr-namespace:PECS2022" NavigationPage.HasNavigationBar="False"
+             x:Class="PECS2022.Views.J1MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <JUSS2Style:PCBSGridStyle x:Key="dark" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Grid  BackgroundColor="#cbcbcb">
+
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Image Grid.Column="0" Grid.Row="0"  HeightRequest="60" Source="{Local:PlatformImageExtension SourceImage= logo.png }"></Image>
+                <Grid Grid.Column="1" Grid.Row="0"   HeightRequest="70" BackgroundColor="#cbcbcb" HorizontalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0">
+                        <Label Text="المحافظة"></Label>
+                        <Picker x:Name="cmbGovernorate" SelectedIndexChanged="cmbGovernorate_SelectedIndexChanged"></Picker>
+
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1">
+                        <Label Text="التجمع"></Label>
+                        <Picker x:Name="cmbLocality" SelectedIndexChanged="cmbSurvey_SelectedIndexChanged"></Picker>
+
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="2">
+                        <Label Text="كلمة البحث"></Label>
+                        <SearchBar x:Name="txtSearch" TextChanged="txtSearch_TextChanged"></SearchBar>
+
+                    </StackLayout>
+
+                    <StackLayout  Grid.Column="3">
+                        <Label>حالة الجمع</Label>
+
+                        <Picker x:Name="cmbStatus" SelectedIndex="0"  SelectedIndexChanged="cmbSurvey_SelectedIndexChanged">
+                            <Picker.Items>
+                                <x:String>الجميع</x:String>
+                                <x:String>غير منجز</x:String>
+                                <x:String>قيد الانجاز</x:String>
+                                <x:String>منجز</x:String>
+
+                            </Picker.Items>
+
+                        </Picker>
+
+                    </StackLayout>
+
+
+
+
+
+
+
+
+
+                </Grid>
+
+                <Grid Grid.Column="2" Grid.Row="0" >
+                    <Button Text="الاعدادات  الرئيسية"  HorizontalOptions="End" VerticalOptions="Center" Clicked="Button_Clicked"></Button>
+
+                </Grid>
+
+            </Grid>
+
+
+            <!--GridTapped="dataGrid_GridTapped" GridLongPressed="dataGrid_GridLongPressed"-->
+            <!--<RelativeLayout x:Name="relativeLayout"   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">-->
+                <syncfusion:SfDataGrid RelativeLayout.WidthConstraint="{ConstraintExpression
+                                                      Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+                         RelativeLayout.HeightConstraint="{ConstraintExpression
+                                                      Type=RelativeToParent,Property=Height,Factor=1,Constant=0}" FlowDirection="RightToLeft"  AllowResizingColumn="True"  GridStyle="{StaticResource dark}" x:Name="dataGrid" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSizer="Star" AllowTriStateSorting="True" AllowEditing="False" AllowSorting="True" AutoGenerateColumns="False" >
+
+                    <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                        <syncfusion:GridTextColumn HeaderText="رقم العينة"    
+                                   MappingName="ID00" />
+                        <syncfusion:GridTextColumn HeaderText="اسم رب الأسرة"
+                                   MappingName="QC3_1" />
+
+                        <syncfusion:GridTemplateColumn MappingName="QC3_2" HeaderText="رقم تلفون أرضي">
+                            <syncfusion:GridTemplateColumn.CellTemplate>
+
+                                <DataTemplate>
+                                    <Button x:Name="btnQC_2"   TextColor="Blue"  Clicked="btnQC_2_Clicked" Text="{Binding QC3_2}"  CommandParameter="{ Binding ID00}"   />
+                                </DataTemplate>
+                            </syncfusion:GridTemplateColumn.CellTemplate>
+                        </syncfusion:GridTemplateColumn>
+
+                        <syncfusion:GridTemplateColumn MappingName="QC3_3" HeaderText="رقم تلفون نقال">
+                            <syncfusion:GridTemplateColumn.CellTemplate>
+
+                                <DataTemplate>
+                                    <Button x:Name="QC1_3"   TextColor="Blue"  Clicked="btnQC_2_Clicked" Text="{Binding QC3_3}"  CommandParameter="{ Binding ID00}"   />
+                                </DataTemplate>
+                            </syncfusion:GridTemplateColumn.CellTemplate>
+                        </syncfusion:GridTemplateColumn>
+
+
+
+                        <!--<syncfusion:GridTextColumn MappingName="E10_1" HeaderText="هاتف" />
+                    <syncfusion:GridTextColumn MappingName="E10_2" HeaderText="نقال" />-->
+                        <syncfusion:GridTextColumn MappingName="QC4_1" HeaderText="معرفين عن الأسرة الاسم الثلاثي" />
+
+                        <syncfusion:GridTemplateColumn MappingName="QC4_2" HeaderText="رقم تلفون نقال -معرفين عن الأسرة">
+                            <syncfusion:GridTemplateColumn.CellTemplate>
+
+                                <DataTemplate>
+                                    <Button x:Name="QC2_2"   TextColor="Blue"  Clicked="btnQC_2_Clicked" Text="{Binding QC4_2}"  CommandParameter="{ Binding ID00}"   />
+                                </DataTemplate>
+                            </syncfusion:GridTemplateColumn.CellTemplate>
+                        </syncfusion:GridTemplateColumn>
+                        <!--<syncfusion:GridTextColumn MappingName="QC2_2" HeaderText="رقم تلفون نقال -معرفين عن الأسرة" />-->
+
+                        <syncfusion:GridTemplateColumn MappingName="IDSAM" HeaderText="تعبئة">
+                            <syncfusion:GridTemplateColumn.CellTemplate>
+
+                                <DataTemplate>
+                                    <Button x:Name="btnFill" Text="تعبئة" TextColor="Blue"  Clicked="btnFill_Clicked" CommandParameter="{ Binding ID00}"   />
+                                </DataTemplate>
+                            </syncfusion:GridTemplateColumn.CellTemplate>
+                        </syncfusion:GridTemplateColumn>
+                    </syncfusion:SfDataGrid.Columns>
+                </syncfusion:SfDataGrid>
+
+            <!--</RelativeLayout>-->
+
+          
+            <Label></Label>
+
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

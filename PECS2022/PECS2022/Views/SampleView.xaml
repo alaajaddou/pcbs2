@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:PECS2022"
+             mc:Ignorable="d"
+             x:Class="PECS2022.Views.SampleView">
+  <ContentView.Content>
+
+        <ScrollView>
+            <StackLayout>
+
+                <Frame Style="{StaticResource FrameBlue}" MinimumHeightRequest="80">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout Grid.Column="0">
+
+                            <Label Text="{local:Translate Text=QC2}"></Label>
+                            <local:MpPicker x:Name="cmbQC2" ItemsSource="{Binding QC2List}"  IsEnabled="{Binding IsEnabled}"   ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding QC2Val}"   ShowErrorMessage="{Binding IsEnabled}"  ></local:MpPicker>
+                            <Label  BindingContext="{x:Reference cmbQC2}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="1">
+                        <Label Text="{local:Translate Text=QC2_CMNT}"></Label>
+                        <local:MpEntry x:Name="txtQC2_CMNT"  Text="{Binding QC2_CMNT}"  IsEnabled="{Binding IsEnabledQC2_CMNT}" ShowErrorMessage="{Binding IsEnabledQC2_CMNT}" Keyboard="Text"></local:MpEntry>
+                        <Label  BindingContext="{x:Reference txtQC2_CMNT}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                        </StackLayout>
+
+                    </Grid>
+                </Frame>
+
+
+                <Frame Style="{StaticResource FrameGreen}"  >
+
+                    <StackLayout>
+                        <Label Style="{StaticResource LabelSection}" Text="البيانات التعريفية"></Label>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                               
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0" >
+                                <Label Text="{local:Translate Text=ID00}"></Label>
+                                <local:MpEntry x:Name="ID00"  Text="{Binding ID00}"  IsEnabled="{Binding IsEnabledIDs}" ShowErrorMessage="{Binding IsEnabledIDs}" Keyboard="Text"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference ID00}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" >
+                                <Label Text="{local:Translate Text=ID1}"></Label>
+                                <local:MpPicker x:Name="cmbID1"  ItemsSource="{Binding ID1List}"    ItemDisplayBinding="{Binding Description}" SelectedItem="{Binding ID1Val}"   IsEnabled="{Binding IsEnabledIDs}"  ShowErrorMessage="{Binding IsEnabledIDs}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference cmbID1}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="2">
+                                <Label Text="{local:Translate Text=ID2}"></Label>
+                                <local:MpPicker x:Name="cmbID2"  ItemsSource="{Binding ID2List}"    ItemDisplayBinding="{Binding Description}" SelectedItem="{Binding ID2Val}"   IsEnabled="{Binding IsEnabledIDs}"  ShowErrorMessage="{Binding IsEnabledIDs}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference cmbID2}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                               
+                            </Grid.ColumnDefinitions>
+                           
+                            <StackLayout Grid.Column="0">
+                                <Label Text="{local:Translate Text=ID3}"></Label>
+                                <local:MpEntry x:Name="ID3"  Text="{Binding ID3}"  IsEnabled="{Binding IsEnabledIDs}" ShowErrorMessage="{Binding IsEnabledIDs}" Keyboard="Numeric"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference ID3}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" >
+                                <Label Text="{local:Translate Text=ID4}"></Label>
+                                <local:MpEntry x:Name="ID4"  Text="{Binding ID4}"  IsEnabled="{Binding IsEnabledID45}" ShowErrorMessage="{Binding IsEnabledID45}" Keyboard="Numeric"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference ID4}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+
+                        </Grid>
+
+                        <Grid>
+                          
+                            <StackLayout Grid.Column="0" >
+                                <Label Text="{local:Translate Text=ID5}"></Label>
+                                <local:MpEntry x:Name="ID5"  Text="{Binding ID5}"  IsEnabled="{Binding IsEnabledID45}" ShowErrorMessage="{Binding IsEnabledID45}" Keyboard="Numeric"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference ID5}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" >
+
+                                <Label Text="{local:Translate Text=ID6}"></Label>
+                                <local:MpEntry x:Name="ID6"  Text="{Binding ID6}"  IsEnabled="{Binding IsEnabledIDs}" ShowErrorMessage="{Binding IsEnabledIDs}" Keyboard="Numeric"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference ID6}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                        </Grid>
+
+                    
+                          
+                            <StackLayout>
+
+                                <Label Text="{local:Translate Text=ID7}"></Label>
+                                <local:MpPicker x:Name="cmbID7"  ItemsSource="{Binding ID7List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding ID7Val}"   IsEnabled="{Binding IsEnabledQCS}"  ShowErrorMessage="{Binding IsEnabledQCS}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference cmbID7}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+
+                      
+
+                    </StackLayout>
+                  
+                </Frame>
+
+                <Frame Style="{StaticResource FrameGreen}"  >
+                    <StackLayout>
+                        <Label Style="{StaticResource LabelSection}" Text="معلومات تعريفية عن الأسرة"></Label>
+                        <Label Text="{local:Translate Text=QC3_1}"></Label>
+                        <local:MpEntry x:Name="QC3_1"  Text="{Binding QC3_1}"  IsEnabled="{Binding IsEnabledQCS}" ShowErrorMessage="{Binding IsEnabledQCS}" Keyboard="Text"></local:MpEntry>
+                        <Label  BindingContext="{x:Reference QC3_1}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                               
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Column="0">
+                                <Label Text="{local:Translate Text=QC3_2}"></Label>
+                                <local:MpEntry x:Name="QC3_2"  Text="{Binding QC3_2}"  IsEnabled="{Binding IsEnabledQCS}" ShowErrorMessage="{Binding IsEnabledQCS}" Keyboard="Numeric"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference QC3_2}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+
+                            <StackLayout Grid.Column="1">
+
+                                <Label Text="{local:Translate Text=QC3_3}"></Label>
+                                <local:MpEntry x:Name="QC3_3"  Text="{Binding QC3_3}"  IsEnabled="{Binding IsEnabledQCS}" ShowErrorMessage="{Binding IsEnabledQCS}" Keyboard="Numeric"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference QC3_3}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+
+                        </Grid>
+
+                        
+
+                    </StackLayout>
+                </Frame>
+
+                <Frame Style="{StaticResource FrameGreen}"  >
+                    <StackLayout>
+                        <Label Style="{StaticResource LabelSection}" Text="معرفين من الأسرة (رقم الزوج أو الزوجة أو الابن أو الابن) أو معرف خارج الاسرة "></Label>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Column="0">
+
+                                <Label Text="{local:Translate Text=QC4_1}"></Label>
+                                <local:MpEntry x:Name="QC4_1"  Text="{Binding QC4_1}"  IsEnabled="{Binding IsEnabledQCS}" ShowErrorMessage="{Binding IsEnabledQCS}" Keyboard="Text"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference QC4_1}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+                            </StackLayout>
+                            <StackLayout Grid.Column="1">
+                                <Label Text="{local:Translate Text=QC4_2}"></Label>
+                                <local:MpEntry x:Name="QC4_2"  Text="{Binding QC4_2}"  IsEnabled="{Binding IsEnabledQCS}" ShowErrorMessage="{Binding IsEnabledQCS}" Keyboard="Numeric"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference QC4_2}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                 
+                </Frame>
+
+                <Frame Style="{StaticResource FrameOrange}"  >
+                    <StackLayout>
+                        <Label Style="{StaticResource LabelSection}" Text="الفرد المطلوب مقابلته حسب العينة"></Label>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Column="0">
+
+                                <Label Text="{local:Translate Text=IndivID}"></Label>
+                                <local:MpEntry x:Name="IndivID"  Text="{Binding IndivID}"  IsEnabled="False" ShowErrorMessage="False" Keyboard="Text"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference IndivID}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+                            </StackLayout>
+                            <StackLayout Grid.Column="1">
+                                <Label Text="{local:Translate Text=IndivName}"></Label>
+                                <local:MpEntry x:Name="IndivName"  Text="{Binding IndivName}"  IsEnabled="False" ShowErrorMessage="False" Keyboard="Numeric"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference IndivName}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+
+                </Frame>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:PECS2022"
+             mc:Ignorable="d" 
+             x:Class="PECS2022.VisitViews.MemberView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <local:NullableIntConverter x:Key="NullableIntConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+  <ContentView.Content >
+        <ScrollView>
+            <StackLayout >
+
+                <Frame Style="{StaticResource FrameBlue}" MinimumHeightRequest="80">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout Grid.Column="0">
+
+                            <Label Text="{local:Translate Text=D1}"></Label>
+                            <local:MpEntry x:Name="D1"  Text="{Binding D1}"  IsEnabled="False" ShowErrorMessage="False" Keyboard="Text"></local:MpEntry>
+                            <Label  BindingContext="{x:Reference D1}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                        </StackLayout>
+                        <StackLayout Grid.Column="1">
+
+                            <Label Text="{local:Translate Text=D2}"></Label>
+                            <local:MpEntry x:Name="D2"  Text="{Binding D2}"  IsEnabled="{Binding IsEnabled}" ShowErrorMessage="{Binding IsEnabled}"  Keyboard="Text"></local:MpEntry>
+                            <Label  BindingContext="{x:Reference D2}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                        </StackLayout>
+
+                      
+
+                    </Grid>
+                </Frame>
+
+
+                <Frame Style="{StaticResource FrameGreen}"  >
+
+                    <StackLayout>
+                        
+                     
+                            <StackLayout>
+                                <Label Text="{local:Translate Text=D3}"></Label>
+                            <local:MpPicker  x:Name="D3"  ItemsSource="{Binding D3List}"     ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D3}"   IsEnabled="{Binding IsEnabled}" ShowErrorMessage="{Binding IsEnabled}"   ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D3}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                            <StackLayout >
+                                <Label Text="{local:Translate Text=D4}"></Label>
+                            <local:MpPicker x:Name="D4"  ItemsSource="{Binding D4List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D4}"   IsEnabled="{Binding IsEnabled}" ShowErrorMessage="{Binding IsEnabled}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D4}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                            <StackLayout  >
+
+                                <Label Text="{local:Translate Text=D5}"></Label>
+                            <local:MpEntry x:Name="D5"  Text="{Binding D5,   Converter={StaticResource NullableIntConverter} }"   Keyboard="Text"  IsEnabled="{Binding IsEnabled}" ShowErrorMessage="{Binding IsEnabled}"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference D5}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                            </StackLayout>
+                           
+                      
+                            <StackLayout Grid.Column="0" >
+                                <Label Text="{local:Translate Text=D6}"></Label>
+                            <local:MpPicker x:Name="D6"  ItemsSource="{Binding D6List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D6}" IsEnabled="{Binding IsEnabled}" ShowErrorMessage="{Binding IsEnabled}"     ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D6}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1">
+                                <Label Text="{local:Translate Text=D7}"></Label>
+                            <local:MpPicker x:Name="D7"  ItemsSource="{Binding D7List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D7}"  IsEnabled="{Binding IsEnabled}" ShowErrorMessage="{Binding IsEnabled}"   ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D7}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                        <StackLayout Grid.Column="2" IsVisible="{Binding IsEnabledD7_CMNT}">
+                                <Label Text="{local:Translate Text=D7_CMNT}"></Label>
+                                <local:MpEntry x:Name="D7_CMNT"  Text="{Binding D7_CMNT}"  IsEnabled="{Binding IsEnabledD7_CMNT}" ShowErrorMessage="{Binding IsEnabledD7_CMNT}"  Keyboard="Text" ></local:MpEntry>
+                                <Label  BindingContext="{x:Reference D7_CMNT}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+
+
+
+                        <StackLayout  >
+
+                            <Label Text="{local:Translate Text=D9}"></Label>
+                            <local:MpPicker x:Name="D9"  ItemsSource="{Binding D9List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D9}"  IsEnabled="{Binding IsEnabled}" ShowErrorMessage="{Binding IsEnabled}"  ></local:MpPicker>
+                            <Label  BindingContext="{x:Reference D9}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                        </StackLayout>
+
+                        <Label  Style="{StaticResource LabelSection}" Text="نتيجة لحالة صحية، هل لدى (الاسم) صعوبة في .....؟"></Label>
+                      
+
+                        <StackLayout Grid.Column="0">
+                                <Label Text="{local:Translate Text=D9_A}"></Label>
+                                <local:MpPicker x:Name="D9_A"  ItemsSource="{Binding D9_AList}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D9_A}"   IsEnabled="{Binding IsEnabled}"  ShowErrorMessage="{Binding IsEnabled}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D9_A}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" >
+                                <Label Text="{local:Translate Text=D9_B}"></Label>
+                                <local:MpPicker x:Name="D9_B"  ItemsSource="{Binding D9_BList}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D9_B}"   IsEnabled="{Binding IsEnabled}"  ShowErrorMessage="{Binding IsEnabled}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D9_B}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="2" >
+                                <Label Text="{local:Translate Text=D9_C}"></Label>
+                                <local:MpPicker x:Name="D9_C"  ItemsSource="{Binding D9_CList}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D9_C}"   IsEnabled="{Binding IsEnabled}"  ShowErrorMessage="{Binding IsEnabled}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D9_C}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                       
+                            <StackLayout Grid.Column="0">
+                                <Label Text="{local:Translate Text=D9_D}"></Label>
+                                <local:MpPicker x:Name="D9_D"  ItemsSource="{Binding D9_DList}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D9_D}"   IsEnabled="{Binding IsEnabled}"  ShowErrorMessage="{Binding IsEnabled}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D9_D}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" >
+                                <Label Text="{local:Translate Text=D9_E}"></Label>
+                                <local:MpPicker x:Name="D9_E"  ItemsSource="{Binding D9_EList}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D9_E}"   IsEnabled="{Binding IsEnabled}"  ShowErrorMessage="{Binding IsEnabled}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D9_E}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="2" >
+                                <Label Text="{local:Translate Text=D9_F}"></Label>
+                                <local:MpPicker x:Name="D9_F"  ItemsSource="{Binding D9_FList}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D9_F}"   IsEnabled="{Binding IsEnabled}"  ShowErrorMessage="{Binding IsEnabled}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D9_F}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                        
+                   
+
+                    </StackLayout>
+
+                </Frame>
+
+                <Frame Style="{StaticResource FrameOrange}" IsVisible="{Binding IsEnabledD10}"  >
+                    <StackLayout>
+                        <Label Style="{StaticResource LabelSection}" Text="التعليم"></Label>
+
+                            <StackLayout Grid.Column="0" >
+                                <Label Text="{local:Translate Text=D10}"></Label>
+                            <local:MpPicker x:Name="D10"  ItemsSource="{Binding D10List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D10}" IsEnabled="{Binding IsEnabled}" ShowErrorMessage="{Binding IsEnabled}"     ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D10}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" IsVisible="{Binding IsEnabledD11}" >
+
+                                <Label Text="{local:Translate Text=D11}"></Label>
+                                <local:MpEntry x:Name="D11"  Text="{Binding D11}"  IsEnabled="{Binding IsEnabledD11}" ShowErrorMessage="{Binding IsEnabledD11}"  Keyboard="Text"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference D11}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="2"  IsVisible="{Binding IsEnabledD12}">
+                                <Label Text="{local:Translate Text=D12}"></Label>
+                                <local:MpPicker x:Name="D12"  ItemsSource="{Binding D12List}"     ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D12}"   IsEnabled="{Binding IsEnabledDs}"  ShowErrorMessage="{Binding IsEnabledDs}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D12}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+
+
+
+                        <StackLayout Grid.Column="0"  IsVisible="{Binding IsEnabledD12_01}" >
+                                <Label Text="{local:Translate Text=D12_01}" ></Label>
+                                <local:MpPicker x:Name="D12_01"  ItemsSource="{Binding D12_01List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D12_01}"   IsEnabled="{Binding IsEnabledD12_01}"  ShowErrorMessage="{Binding IsEnabledD12_01}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D12_01}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                        <StackLayout Grid.Column="2" IsVisible="{Binding IsEnabledD12_01_CMNT}">
+                            <Label Text="{local:Translate Text=D12_01_CMNT}"></Label>
+                            <local:MpEntry x:Name="D12_01_CMNT"  Text="{Binding D12_01_CMNT}"  IsEnabled="{Binding IsEnabledD12_01_CMNT}" ShowErrorMessage="{Binding IsEnabledD12_01_CMNT}"  Keyboard="Text"></local:MpEntry>
+                            <Label  BindingContext="{x:Reference D12_01_CMNT}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                        </StackLayout>
+                        <StackLayout Grid.Column="1"  IsVisible="{Binding IsEnabledD12_02}">
+                                <Label Text="{local:Translate Text=D12_02}"></Label>
+                                <local:MpPicker x:Name="D12_02"  ItemsSource="{Binding D12_02List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D12_02}"   IsEnabled="{Binding IsEnabledD12_02}"  ShowErrorMessage="{Binding IsEnabledD12_02}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D12_02}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+
+
+                       
+                    </StackLayout>
+                </Frame>
+
+                <Frame Style="{StaticResource FrameYellow}" IsVisible="{Binding IsEnabledD13}"  >
+                    <StackLayout>
+                        <Label Style="{StaticResource LabelSection}" Text="العمل"></Label>
+                        
+                            <StackLayout Grid.Column="0"  >
+                                <Label Text="{local:Translate Text=D13}"></Label>
+                            <local:MpPicker x:Name="D13"  ItemsSource="{Binding D13List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D13}" IsEnabled="{Binding IsEnabled}" ShowErrorMessage="{Binding IsEnabled}"     ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D13}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                        <StackLayout Grid.Column="1"  IsVisible="{Binding IsEnabledD13_CMNT}">
+
+                                <Label Text="{local:Translate Text=D13_CMNT}"></Label>
+                                <local:MpEntry x:Name="D13_CMNT"  Text="{Binding D13_CMNT}"  IsEnabled="{Binding IsEnabledD13_CMNT}"  ShowErrorMessage="{Binding IsEnabledD13_CMNT}" Keyboard="Text"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference D13_CMNT}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                            </StackLayout>
+
+
+
+
+
+                        <StackLayout Grid.Column="0" IsVisible="{Binding IsEnabledD14_20}" >
+                                <Label Text="{local:Translate Text=D14}"></Label>
+                                <local:MpPicker x:Name="D14"  ItemsSource="{Binding D14List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D14}"   IsEnabled="{Binding IsEnabledD14_20}"  ShowErrorMessage="{Binding IsEnabledD14_20}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D14}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                        <StackLayout Grid.Column="1" IsVisible="{Binding IsEnabledD14_20}" >
+
+                                <Label Text="{local:Translate Text=D15}"></Label>
+                                <local:MpPicker x:Name="D15"  ItemsSource="{Binding D15List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D15}"   IsEnabled="{Binding IsEnabledD14_20}"  ShowErrorMessage="{Binding IsEnabledD14_20}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D15}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                            </StackLayout>
+
+
+
+
+
+                        <StackLayout Grid.Column="0" IsVisible="{Binding IsEnabledD15}" >
+                                <Label Text="{local:Translate Text=D15_1}"></Label>
+                                <local:MpPicker x:Name="D15_1"  ItemsSource="{Binding D15_1List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D15_1}"   IsEnabled="{Binding IsEnabledD15}"  ShowErrorMessage="{Binding IsEnabledD15}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D15_1}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                        <StackLayout Grid.Column="1" IsVisible="{Binding IsEnabledD15}" >
+
+                                <Label Text="{local:Translate Text=D15_2}"></Label>
+                                <local:MpPicker x:Name="D15_2"  ItemsSource="{Binding D15_2List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D15_2}"   IsEnabled="{Binding IsEnabledD15}"  ShowErrorMessage="{Binding IsEnabledD15}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D15_2}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                            </StackLayout>
+
+
+
+                        <StackLayout Grid.Column="0" IsVisible="{Binding IsEnabledD14_20}">
+                                <Label Text="{local:Translate Text=D16_Desc}"></Label>
+                                <local:MpEntry x:Name="D16_Desc"  Text="{Binding D16_Desc}"  IsEnabled="{Binding IsEnabledD14_20}" ShowErrorMessage="{Binding IsEnabledD14_20}"  Keyboard="Text"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference D16_Desc}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                        <StackLayout Grid.Column="1" IsVisible="{Binding IsEnabledD14_20}" >
+
+                                <Label Text="{local:Translate Text=D17_Desc}"></Label>
+                                <local:MpEntry x:Name="D17_Desc"  Text="{Binding D17_Desc}"  IsEnabled="{Binding IsEnabledD14_20}" ShowErrorMessage="{Binding IsEnabledD14_20}" Keyboard="Text"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference D17_Desc}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                            </StackLayout>
+
+
+
+
+                        <StackLayout Grid.Column="0" IsVisible="{Binding IsEnabledD14_20}" >
+                                <Label Text="{local:Translate Text=D18}"></Label>
+                                <local:MpPicker x:Name="D18"  ItemsSource="{Binding D18List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D18}"   IsEnabled="{Binding IsEnabledD14_20}" ShowErrorMessage="{Binding IsEnabledD14_20}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D18}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                        
+                        
+                        <StackLayout Grid.Column="1" IsVisible="{Binding IsEnabledD19}" >
+
+                                <Label Text="{local:Translate Text=D19}"></Label>
+                            <local:MpPicker x:Name="D19"  ItemsSource="{Binding D19List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D19}"   IsEnabled="{Binding IsEnabledD19}"  ShowErrorMessage="{Binding IsEnabledD19}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D19}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                            </StackLayout>
+
+
+                        <Label Style="{StaticResource LabelSection}" Text="{local:Translate Text=D18X}" IsVisible="{Binding IsEnabledD18_02_X}"></Label>
+                        <StackLayout Grid.Column="1" IsVisible="{Binding IsEnabledD18_02_X}" >
+
+                            <Label Text="{local:Translate Text=D18_1}"></Label>
+                            <local:MpPicker x:Name="D18_02_1"  ItemsSource="{Binding D18_02_1List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D18_02_1}"   IsEnabled="{Binding IsEnabledD18_02_X}"  ShowErrorMessage="{Binding IsEnabledD18_02_X}"  ></local:MpPicker>
+                            <Label  BindingContext="{x:Reference D18_02_1}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                        </StackLayout>
+                        <StackLayout Grid.Column="0" IsVisible="{Binding IsEnabledD18_02_X}" >
+                            <Label Text="{local:Translate Text=D18_2}"></Label>
+                            <local:MpEntry x:Name="D18_02_2"  Text="{Binding D18_02_2}"  IsEnabled="{Binding IsEnabledD18_02_X}" ShowErrorMessage="{Binding IsEnabledD18_02_X}"  Keyboard="Numeric"></local:MpEntry>
+                            <Label  BindingContext="{x:Reference D18_02_2}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                        </StackLayout>
+
+
+                        <StackLayout Grid.Column="1" IsVisible="{Binding IsEnabledD18_02_X}" >
+
+                            <Label Text="{local:Translate Text=D18_3}"></Label>
+                            <local:MpPicker x:Name="D18_02_3"  ItemsSource="{Binding D18_02_3List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D18_02_3}"   IsEnabled="{Binding IsEnabledD18_02_X}"  ShowErrorMessage="{Binding IsEnabledD18_02_X}"  ></local:MpPicker>
+                            <Label  BindingContext="{x:Reference D18_02_3}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                        </StackLayout>
+
+
+
+                        <StackLayout Grid.Column="0" IsVisible="{Binding IsEnabledD19}" >
+                                <Label Text="{local:Translate Text=D19_1}"></Label>
+                            <local:MpEntry x:Name="D19_1"  Text="{Binding D19_1}"  IsEnabled="{Binding IsEnabledD19}" ShowErrorMessage="{Binding IsEnabledD19}"  Keyboard="Text"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference D19_1}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+
+                        <Label Style="{StaticResource LabelSection}" Text="{local:Translate Text=D19_2}" IsVisible="{Binding IsEnabledD14_20}"></Label>
+                        <StackLayout Grid.Column="1" IsVisible="{Binding IsEnabledD19_X}" >
+
+                                <Label Text="{local:Translate Text=D19_2_1}"></Label>
+                            <local:MpPicker x:Name="D19_2_1"  ItemsSource="{Binding D19_2_1List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D19_2_1}"   IsEnabled="{Binding IsEnabledD19_X}"  ShowErrorMessage="{Binding IsEnabledD19_X}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference D19_2_1}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                            </StackLayout>
+
+                        <StackLayout Grid.Column="1" IsVisible="{Binding IsEnabledD19_X}" >
+
+                            <Label Text="{local:Translate Text=D19_2_2}"></Label>
+                            <local:MpPicker x:Name="D19_2_2"  ItemsSource="{Binding D19_2_2List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D19_2_2}"   IsEnabled="{Binding IsEnabledD19_X}"  ShowErrorMessage="{Binding IsEnabledD19_X}"  ></local:MpPicker>
+                            <Label  BindingContext="{x:Reference D19_2_2}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                        </StackLayout>
+                        <StackLayout Grid.Column="1" IsVisible="{Binding IsEnabledD19_X}" >
+
+                            <Label Text="{local:Translate Text=D19_2_3}"></Label>
+                            <local:MpPicker x:Name="D19_2_3"  ItemsSource="{Binding D19_2_3List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D19_2_3}"   IsEnabled="{Binding IsEnabledD19_X}"  ShowErrorMessage="{Binding IsEnabledD19_X}"  ></local:MpPicker>
+                            <Label  BindingContext="{x:Reference D19_2_3}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                        </StackLayout>
+                        <StackLayout Grid.Column="1" IsVisible="{Binding IsEnabledD19_4}" >
+
+                            <Label Text="{local:Translate Text=D19_2_4}"></Label>
+                            <local:MpPicker x:Name="D19_2_4"  ItemsSource="{Binding D19_2_4List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D19_2_4}"   IsEnabled="{Binding IsEnabledD19_4}"  ShowErrorMessage="{Binding IsEnabledD19_4}"  ></local:MpPicker>
+                            <Label  BindingContext="{x:Reference D19_2_4}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                        </StackLayout>
+                        <!--<StackLayout Grid.Column="1" IsVisible="{Binding IsEnabledD14_20}" >
+
+                            <Label Text="{local:Translate Text=D19_2_5}"></Label>
+                            <local:MpPicker x:Name="D19_2_5"  ItemsSource="{Binding D19_2_5List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D19_2_5}"   IsEnabled="{Binding IsEnabledD14_20}"  ShowErrorMessage="{Binding IsEnabledD14_20}"  ></local:MpPicker>
+                            <Label  BindingContext="{x:Reference D19_2_5}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                        </StackLayout>-->
+
+
+
+
+                    </StackLayout>
+
+                </Frame>
+
+                <Frame Style="{StaticResource FrameGreen}" IsVisible="{Binding IsEnabledD21}"  >
+                    <StackLayout>
+                        <Label Text="{local:Translate Text=D21}"></Label>
+                        <local:MpPicker x:Name="D21"  ItemsSource="{Binding D21List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding D21}"   IsEnabled="{Binding IsEnabledD21}"  ShowErrorMessage="{Binding IsEnabledD21}"  ></local:MpPicker>
+                        <Label  BindingContext="{x:Reference D21}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

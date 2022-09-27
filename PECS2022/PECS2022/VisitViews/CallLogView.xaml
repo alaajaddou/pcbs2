@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:PECS2022"
+             mc:Ignorable="d"
+             x:Class="PECS2022.VisitViews.CallLogView">
+  <ContentView.Content>
+        <ScrollView>
+            <StackLayout >
+
+                <Frame Style="{StaticResource FrameBlue}" MinimumHeightRequest="80">
+                    <StackLayout>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Column="0">
+                                <Label Text="{local:Translate Text=C2}"></Label>
+                                <local:MpEntry x:Name="C2"  Text="{Binding C2}"  IsEnabled="{Binding C2IsEnabled }" ShowErrorMessage="{Binding C2IsEnabled}"  Keyboard="Text"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference C2}"        Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1">
+                                <Label Text="{local:Translate Text=C3}"></Label>
+                                <local:MpEntry x:Name="C3"  Text="{Binding C3}"  IsEnabled="False"  Keyboard="Text"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference C3}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+                            </StackLayout>
+                        </Grid>
+
+                        <Grid>
+                            <StackLayout Grid.Column="0" >
+                                <Label Text="{local:Translate Text=C4}"></Label>
+                                <local:MpPicker x:Name="C4"  ItemsSource="{Binding C4List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding C4}" IsEnabled="{Binding IsEnabled}" ShowErrorMessage="{Binding IsEnabled}"     ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference C4}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1">
+                                <Label Text="{local:Translate Text=C5}"></Label>
+                                <local:MpPicker x:Name="C5"  ItemsSource="{Binding C5List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding C5}" IsEnabled="{Binding C5IsEnabled}" ShowErrorMessage="{Binding C5IsEnabled}"    ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference C5}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                        </Grid>
+
+                        <Grid>
+
+                            <StackLayout Grid.Column="0">
+                                <Label Text="{local:Translate Text=C6}"></Label>
+                                <local:MpPicker x:Name="C6"  ItemsSource="{Binding C6List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding C6}" ShowErrorMessage="{Binding C6IsEnabled}"  IsEnabled="{Binding C6IsEnabled}"  ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference C6}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" >
+
+                                <Label Text="{local:Translate Text=C6_Name}"></Label>
+                                <local:MpEntry x:Name="C6_Name"  Text="{Binding C6_Name}"  IsEnabled="{Binding C6_CMNTIsEnabled}" ShowErrorMessage="{Binding C6_CMNTIsEnabled}"  Keyboard="Text"></local:MpEntry>
+                                <Label  BindingContext="{x:Reference C6_Name}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+
+                            </StackLayout>
+
+                        </Grid>
+
+                        <Grid>
+                            <StackLayout Grid.Column="0" >
+                                <Label Text="{local:Translate Text=C7}"></Label>
+                                <local:MpPicker x:Name="C7"  ItemsSource="{Binding C7List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding C7}"  IsEnabled="{Binding C7IsEnabled}" ShowErrorMessage="{Binding C7IsEnabled}"    ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference C7}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1">
+                                <Label Text="{local:Translate Text=C8}"></Label>
+                                <local:MpPicker x:Name="C8"  ItemsSource="{Binding C8List}"    ItemDisplayBinding="{Binding FullDescription}" SelectedItem="{Binding C8}" IsEnabled="{Binding C8IsEnabled}" ShowErrorMessage="{Binding C8IsEnabled}"    ></local:MpPicker>
+                                <Label  BindingContext="{x:Reference C8}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+
+                            </StackLayout>
+                        </Grid>
+
+                    </StackLayout>
+
+
+                </Frame>
+
+                <Frame Style="{StaticResource FrameOrange}">
+                    <StackLayout>
+                        <Label Text="{local:Translate Text=Comments}"  Style="{StaticResource LabelSection}" ></Label>
+                        <local:MpEntry  x:Name="txtComments"    Text="{Binding Comments}"  ShowErrorMessage="True" ></local:MpEntry>
+                        <Label  BindingContext="{x:Reference txtComments}"    IsVisible="{Binding HasError}"    Text="{Binding ErrorMessage}"   TextColor="Red" />
+                    </StackLayout>
+
+                </Frame>
+                <Grid>
+                    <Button  Grid.Column="0"  WidthRequest="200"  x:Name="btnSaveChanges"    Command="{Binding Save}" Style="{StaticResource GreenButton}" Text="حفظ التعديلات"></Button>
+                    <Button  Grid.Column="1"  WidthRequest="200"  x:Name="btnContinue"  IsVisible="True"  Command="{Binding Continue}" Style="{StaticResource RedButton}" Text="الذهاب الى بيانات الاسرة"></Button>
+
+                </Grid>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

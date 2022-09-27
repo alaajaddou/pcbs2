@@ -1,0 +1,648 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:esriUI="clr-namespace:Esri.ArcGISRuntime.Xamarin.Forms;assembly=Esri.ArcGISRuntime.Xamarin.Forms"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             mc:Ignorable="d"
+             x:Class="PECS2022.Views.MainPage"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"  >
+
+    <ContentPage.ToolbarItems>
+
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+
+        <Grid>
+
+            <Grid>
+                <esriUI:MapView x:Name="MyMapView">
+
+
+                </esriUI:MapView>
+                
+                <!--ToolBar / Map Tools -->
+                <RelativeLayout x:Name="pnlHorizontalToolBar" HorizontalOptions="Start" VerticalOptions="Start" Margin="0,3,3,0">
+
+                    <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="2"
+                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=0, Constant=0}"
+                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}" >
+
+                        <Image x:Name="btnCollapse" HorizontalOptions="Start"  VerticalOptions="Start" Margin="0" IsEnabled="True">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                Tapped="btnCollapse_Tapped" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="slideup.png" ></On>
+                                    <On Platform="UWP"  Value="images/slideup.png"></On>
+                                </OnPlatform>
+                            </Image.Source>
+
+                        </Image>
+                        
+                        <Image x:Name="btnSettings" HorizontalOptions="Start"  VerticalOptions="Start" Margin="0" IsEnabled="True">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                Tapped="btnSettings_Clicked" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="settings.png" ></On>
+                                    <On Platform="UWP"  Value="images/settings.png"></On>
+                                </OnPlatform>
+                            </Image.Source>
+
+                        </Image>
+
+                        <Image x:Name="btnChangeLocation" HorizontalOptions="Start"  VerticalOptions="Start" Margin="0" IsEnabled="True">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                Tapped="btnChangeLocation_Clicked" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="changelocation.png" ></On>
+                                    <On Platform="UWP"  Value="images/changelocation.png"></On>
+                                </OnPlatform>
+                            </Image.Source>
+
+                        </Image>
+
+                        <Image x:Name="btnAddNewBuilding" HorizontalOptions="Start"  VerticalOptions="Start"  IsEnabled="True">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="btnAddNew_Clicked" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="addnewbuilding.png" ></On>
+                                    <On Platform="UWP"  Value="images/addnewbuilding.png"></On>
+                                </OnPlatform>
+                            </Image.Source>
+
+                        </Image>
+
+                        <Image x:Name="btnChart" HorizontalOptions="Start"  VerticalOptions="Start"   IsEnabled="True">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="BtnChart_Clicked" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="chart.png" ></On>
+                                    <On Platform="UWP"  Value="images/chart.png"></On>
+                                </OnPlatform>
+                            </Image.Source>
+
+                        </Image>
+
+                        <Image x:Name="btnBrightness" HorizontalOptions="Start"  VerticalOptions="Start"   IsEnabled="True">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="brightness.png" ></On>
+                                    <On Platform="UWP"  Value="images/brightness.png"></On>
+                                </OnPlatform>
+                            </Image.Source>
+
+                        </Image>
+
+
+                    </StackLayout>
+                </RelativeLayout>
+                <RelativeLayout x:Name="pnlVerticalToolBar" HorizontalOptions="Start" VerticalOptions="Start" Margin="0,55,3,0">
+                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  Spacing="2"
+                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=0, Constant=0}"
+                  RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                    >
+
+                        <Image IsVisible="False" x:Name="btnSamples" HorizontalOptions="Start"  VerticalOptions="Start" Margin="0" IsEnabled="True">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                Tapped="btnSamples_Clicked" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="samples.png" ></On>
+                                    <On Platform="UWP"  Value="images/samples.png"></On>
+                                </OnPlatform>
+                            </Image.Source>
+
+                        </Image>
+
+
+                        <Image IsVisible="False" x:Name="btnUnknownSamples" HorizontalOptions="Start"  VerticalOptions="Start" Margin="0" IsEnabled="True">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                Tapped="btnUnKnownSamples_Clicked" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="unknowsamples.png" ></On>
+                                    <On Platform="UWP"  Value="images/unknowsamples.png"></On>
+                                </OnPlatform>
+                            </Image.Source>
+
+                        </Image>
+
+
+                        <Image x:Name="btnFind" HorizontalOptions="Start"  VerticalOptions="Start" Margin="0" IsEnabled="True">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                Tapped="btnFind_Clicked" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="find.png" ></On>
+                                    <On Platform="UWP"  Value="images/find.png"></On>
+                                </OnPlatform>
+                            </Image.Source>
+
+                        </Image>
+
+                        <Image x:Name="selectBuildingBtn"  HorizontalOptions="Start"  VerticalOptions="Start" WidthRequest="50" HeightRequest="50"  IsEnabled="True">
+
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                Tapped="selectBuildingBtn_Clicked" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="buildingvisit.png" ></On>
+                                    <On Platform="UWP"  Value="images/buildingvisit.png"></On>
+                                </OnPlatform>
+                            </Image.Source>
+                        </Image>
+                        <Image x:Name="btnInfoBuildingBtn"  HorizontalOptions="Start"  VerticalOptions="Start" WidthRequest="50" HeightRequest="50"  IsEnabled="True">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                Tapped="btnInfoBuildingBtn_Clicked" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="buildinginfo.png" ></On>
+                                    <On Platform="UWP"  Value="images/buildinginfo.png"></On>
+                                </OnPlatform>
+                            </Image.Source>
+                        </Image>
+                        <Image x:Name="zoomInBtn" HorizontalOptions="Start"  VerticalOptions="Start" WidthRequest="50" HeightRequest="50" IsEnabled="True">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="zoomInBtn_Clicked" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="zoomin.png" ></On>
+                                    <On Platform="UWP"  Value="images/zoomin.png"></On>
+                                </OnPlatform>
+                            </Image.Source>
+
+                        </Image>
+                        <Image x:Name="zoomOutBtn" HorizontalOptions="Start"  VerticalOptions="Start" WidthRequest="50" HeightRequest="50"  IsEnabled="True">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="zoomOutBtn_Clicked" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="zoomout.png" ></On>
+                                    <On Platform="UWP"  Value="images/zoomout.png"></On>
+                                </OnPlatform>
+                            </Image.Source>
+
+                        </Image>
+
+                        <Image x:Name="navigationViewBtn" HorizontalOptions="Start"  VerticalOptions="Start" WidthRequest="50" HeightRequest="50"  IsEnabled="True">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="navigationViewBtn_Clicked" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="mapmove.png" ></On>
+                                    <On Platform="UWP"  Value="images/mapmove.png"></On>
+                                </OnPlatform>
+                            </Image.Source>
+
+                        </Image>
+
+                        <Image x:Name="fullExtentBtn" HorizontalOptions="Start"  VerticalOptions="Start" WidthRequest="50" HeightRequest="50"  IsEnabled="True">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="fullExtentBtn_Clicked" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="mapinitial.png" ></On>
+                                    <On Platform="UWP"  Value="images/mapinitial.png"></On>
+                                </OnPlatform>
+                            </Image.Source>
+
+                        </Image>
+                        <Image x:Name="layersBtn" HorizontalOptions="Start"  VerticalOptions="Start" WidthRequest="50" HeightRequest="50"  IsEnabled="True">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="layersBtn_Clicked" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="maplayers.png" ></On>
+                                    <On Platform="UWP"  Value="images/maplayers.png"></On>
+                                </OnPlatform>
+                            </Image.Source>
+
+                        </Image>
+
+
+                    </StackLayout>
+                </RelativeLayout>
+                <!--End ToolBar-->
+
+                <!--Campus-->
+                <Image x:Name="imgCampos"  VerticalOptions="End" HorizontalOptions="End"  Margin="0,0,40,60">
+                    <Image.Source>
+                        <OnPlatform x:TypeArguments="FileImageSource">
+                            <On Platform="Android" Value="compass.png" ></On>
+                            <On Platform="UWP"  Value="images/compass.png"></On>
+                        </OnPlatform>
+                    </Image.Source>
+
+                </Image>
+                <!--End Campus-->
+
+                <!-- Samples Tapped Filter-->
+                <StackLayout Orientation="Horizontal" Padding="10,0,10,0"   VerticalOptions="End" HorizontalOptions="End" Grid.Row="0" BackgroundColor="#c1c1c1" HeightRequest="50"  x:Name="pnlMapLegand">
+
+                    <StackLayout Orientation="Horizontal" x:Name="pnlMapLegand2">
+
+                        <Image x:Name="btnNotVisited" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                Tapped="btnNotVisied_Tapped" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="notvisited.png" ></On>
+                                    <On Platform="UWP"  Value="images/notvisited.png"></On>
+                                </OnPlatform>
+
+                            </Image.Source>
+
+                        </Image>
+                        <Image x:Name="btnNotCompleted" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                Tapped="btnNotComplete_Tapped" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="notcomplete.png" ></On>
+                                    <On Platform="UWP"  Value="images/notcomplete.png"></On>
+                                </OnPlatform>
+
+                            </Image.Source>
+
+                        </Image>
+                        <Image x:Name="btnCompleted" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                Tapped="btnCompleted_Tapped" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="complete.png" ></On>
+                                    <On Platform="UWP"  Value="images/complete.png"></On>
+                                </OnPlatform>
+
+                            </Image.Source>
+
+                        </Image>
+                        <Image x:Name="btnNotSample" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                Tapped="btnNotSsample_Tapped" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="notsample.png" ></On>
+                                    <On Platform="UWP"  Value="images/notsample.png"></On>
+                                </OnPlatform>
+
+                            </Image.Source>
+
+                        </Image>
+                    </StackLayout>
+                    <Image >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                Tapped="btnLogo_Tapped" />
+                        </Image.GestureRecognizers>
+
+                        <Image.Source>
+                            <OnPlatform x:TypeArguments="FileImageSource">
+                                <On Platform="Android" Value="pcbs_logo.png" ></On>
+                                <On Platform="UWP"  Value="images/pcbs_logo.png"></On>
+                            </OnPlatform>
+
+                        </Image.Source>
+
+                    </Image>
+
+
+                </StackLayout>
+                <!-- End Samples Tapped Filter-->
+            </Grid>
+
+            <!--Panel Overlay-->
+            <ContentView x:Name="panelOverlay"  ControlTemplate="{StaticResource PanelOverlayLayout}" IsVisible="False"/>
+            <!--End Panel Overlay-->
+
+            <!--Map Layers-->
+            <Frame x:Name="panelLegend" StyleClass="Card" BackgroundColor="White" WidthRequest="380" IsVisible="False"
+            HorizontalOptions="Start"  VerticalOptions="Start"  Margin="60,60,0,0"
+            Padding="20">
+                <Grid>
+
+                    <StackLayout>
+
+                        <ContentView ControlTemplate="{StaticResource CloseLayout}"/>
+
+                        <Label Text="طبقات الخارطة"  FontSize="15" FontAttributes="Bold" Margin="0,0,0,6"
+                     TextColor="Black"/>
+                        <ListView x:Name="layersList" Grid.Row="1" Margin="12,0"   >
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <SwitchCell  Text="{Binding Name}" On="{ Binding IsVisible }"></SwitchCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                        </ListView>
+                    </StackLayout>
+
+                </Grid>
+            </Frame>
+            <!--End Map Layers-->
+
+            <!-- Find Location-->
+            <Frame x:Name="panelFindLocation" StyleClass="Card" BackgroundColor="White"  IsVisible="False" 
+            HorizontalOptions="Start"   VerticalOptions="Start"  Margin="60,120,0,0"
+            Padding="15">
+                <Grid>
+
+                    <StackLayout Orientation="Vertical" >
+
+                        <ContentView ControlTemplate="{StaticResource CloseLayout}"/>
+
+                        <Entry WidthRequest="250"  TextColor="Black" x:Name="txtSearch" Placeholder="البحث في الخارطة"  FontSize="15" FontAttributes="Bold"></Entry>
+                        <Picker x:Name="cmbLayerId" SelectedIndex="0">
+                            <Picker.Items>
+                                <x:String>مواقع الابنية</x:String>
+
+                                <x:String>مناطق العد</x:String>
+
+                            </Picker.Items>
+
+                        </Picker>
+                        <Button x:Name="btnSearch" Text="بحث" Clicked="btnSearch_Clicked"></Button>
+
+                    </StackLayout>
+
+                </Grid>
+            </Frame>
+            <!-- End Find Location-->
+
+            <!--Find Location MultiResult-->
+            <Frame x:Name="panelSearchMultiResult" StyleClass="Card" IsVisible="False"
+           HeightRequest="400"   WidthRequest="400"
+            Padding="20"   HorizontalOptions="Start"   VerticalOptions="Start"  Margin="60,50,0,0">
+                <Grid>
+                    <StackLayout>
+
+                        <ContentView ControlTemplate="{StaticResource CloseLayout}"/>
+
+                        <StackLayout>
+                            <Label Text="نتيجة البحث"  FontSize="15" FontAttributes="Bold" Margin="0,0,0,6" x:Name="searchResultCount"
+                     TextColor="Black"/>
+                            <syncfusion:SfDataGrid x:Name="searchResultDataGrid" 
+                                               SelectionMode="Single"
+                                               AllowSorting="False"
+                                               AutoGenerateColumns="False"
+                                               FlowDirection="RightToLeft"
+                                               AllowResizingColumn="True"
+                                              >
+
+                                <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns" HeaderStyle="{StaticResource HeaderStyle}">
+
+                                    <syncfusion:GridTextColumn HeaderText="رقم تعداد المبنى" HeaderFontAttribute="Bold" MappingName="BuildingKey"  ColumnSizer ="Star">
+                                    </syncfusion:GridTextColumn>
+
+                                    <syncfusion:GridTextColumn HeaderText="اسم المبنى" HeaderFontAttribute="Bold" MappingName="Name"  ColumnSizer ="Star">
+                                    </syncfusion:GridTextColumn>
+
+                                    <syncfusion:GridTextColumn HeaderText="اسم مالك المبنى" HeaderFontAttribute="Bold" MappingName="Owner"  ColumnSizer ="Star">
+                                    </syncfusion:GridTextColumn>
+
+                                    <!--<syncfusion:GridTextColumn HeaderText="عدد الطوابق" HeaderFontAttribute="Bold" MappingName="NumberOfFloors"  ColumnSizer ="Auto">
+                                    </syncfusion:GridTextColumn>-->
+
+
+                                    <syncfusion:GridTemplateColumn HeaderText="" MappingName ="BuildingCode"  ColumnSizer ="Auto" >
+                                        <syncfusion:GridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button WidthRequest="80" Text="اظهار"  Clicked="ShowSearchResultBuilding_Clicked"/>
+                                            </DataTemplate>
+                                        </syncfusion:GridTemplateColumn.CellTemplate>
+                                    </syncfusion:GridTemplateColumn>
+
+                                </syncfusion:SfDataGrid.Columns>
+                            </syncfusion:SfDataGrid>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+            <!--End Find Location MultiResult-->
+            
+            <!-- Change Location-->
+            <Frame x:Name="panelChangeLocation" StyleClass="Card" BackgroundColor="White" WidthRequest="380" IsVisible="False" 
+            HorizontalOptions="Center"  VerticalOptions="Center" 
+            Padding="20">
+                <Grid>
+                    <StackLayout>
+                        <ContentView ControlTemplate="{StaticResource CloseLayout}"/>
+
+                        <Label Text="المحافظة" FontSize="15" FontAttributes="Bold" Margin="0,0,0,6"
+                     TextColor="Black"/>
+                        <Picker x:Name="cmbGov" SelectedIndexChanged="cmbGovernorate_SelectedIndexChanged"></Picker>
+
+                        <Label Text="تغيير التجمع"  FontSize="15" FontAttributes="Bold" Margin="0,0,0,6"
+                         TextColor="Black"/>
+                        <Label>التجمع</Label>
+                        <Picker x:Name="cmbLocality" SelectedIndexChanged="cmbLocality_SelectedIndexChanged"></Picker>
+
+                        <!--<Label>منطقة العد</Label>
+                        <Picker x:Name="cmbEnumArea" SelectedIndexChanged="cmbEnumArea_SelectedIndexChanged"></Picker>-->
+
+                        <ContentView ControlTemplate="{StaticResource Seperator_5}"/>
+                        <ContentView x:Name="upateSettingsAIndicator" ControlTemplate="{StaticResource HorizontalLoadingLayout}" HorizontalOptions="CenterAndExpand" IsVisible="False"/>
+
+                        <Grid>
+                            <!--<Button x:Name="btnUpdate"  Text="تحديث العينات"   Grid.Column="0" Clicked="BtnUpdate_Clicked"></Button>-->
+                            <Button x:Name="btnOk" StyleClass="Green" Text="موافق" Grid.Column="0" Grid.ColumnSpan="2" Clicked="btnOk_Clicked"></Button>
+                        </Grid>
+
+                    </StackLayout>
+
+                </Grid>
+            </Frame>
+            <!-- End Change Location-->
+            
+            <!-- Add  new Building-->
+            <Frame x:Name="panelAddNewBuilding" StyleClass="Card" BackgroundColor="White" WidthRequest="360" IsVisible="False" 
+            HorizontalOptions="Center"  VerticalOptions="Center" 
+            Padding="20">
+                <Grid>
+                    <StackLayout>
+                        <ContentView ControlTemplate="{StaticResource CloseLayout}"/>
+
+                        <Label Text="أضافة مبنى جديد"  FontSize="15" FontAttributes="Bold" Margin="0,0,0,6"
+                     TextColor="Black"/>
+
+
+                        <Label x:Name="lblBuildingCode" Text="رقم المبنى"></Label>
+                        <Entry IsEnabled="False" x:Name="txtBuildingCode"></Entry>
+                        <Label x:Name="lblBuildingOwner" Text="اسم مالك المبنى"></Label>
+                        <Entry x:Name="txtOwner" ></Entry>
+                        <Label x:Name="lblNumberOfFloors" Text="عدد الطوابق"></Label>
+                        <Entry x:Name="txtNumberOfFloors" Keyboard="Numeric"></Entry>
+                        <!--<Label Text="حالة المبنى"></Label>
+                    <Picker x:Name="cmbBuildingStatus"></Picker>-->
+
+
+                        <Label Text="كلمة المرور لاضافة مبنى"></Label>
+                        <Entry x:Name="txtAddBuildingPassowrd" IsPassword="True"></Entry>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.ColumnSpan="2" Grid.Row="0" StyleClass="Green" Text="اضافة"  Clicked="btnAddNewBuilding_Clicked"></Button>
+
+                        </Grid>
+
+                    </StackLayout>
+
+                </Grid>
+            </Frame>
+            <!-- end new Building-->
+
+            <!--Chart -->
+            <Frame x:Name="panelChart" StyleClass="Card" BackgroundColor="White" WidthRequest="400" IsVisible="False" 
+            HorizontalOptions="Center"  VerticalOptions="Center" HeightRequest="400" 
+            Padding="20">
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Orientation="Vertical" Grid.Row="0">
+                        <ContentView ControlTemplate="{StaticResource CloseLayout}"/>
+                        <Label Text="احصائية الزيارات للعينات"  FontSize="15" FontAttributes="Bold" Margin="0,0,0,6"/>
+                    </StackLayout>
+
+
+                    <chart:SfChart x:Name="performanceChart"  Grid.Row="1">
+
+                        <chart:SfChart.Legend>
+                            <chart:ChartLegend>
+                                <chart:ChartLegend.LabelStyle>
+                                    <chart:ChartLegendLabelStyle Font="15"/>
+                                </chart:ChartLegend.LabelStyle>
+                            </chart:ChartLegend>
+                        </chart:SfChart.Legend>
+                        <chart:SfChart.Series>
+                            <chart:DoughnutSeries x:Name="pieChart"
+                                              ExplodeOnTouch="True" 
+                                              CircularCoefficient="2"
+                                              DoughnutCoefficient="0.4"
+                                              >
+
+                                <chart:DoughnutSeries.ColorModel>
+                                    <chart:ChartColorModel Palette="Custom"/>
+                                </chart:DoughnutSeries.ColorModel>
+
+                                <chart:DoughnutSeries.CenterView>
+                                    <StackLayout HorizontalOptions = "FillAndExpand" 
+		                         VerticalOptions = "FillAndExpand">
+                                        <Label Text="الزيارات" />
+                                    </StackLayout>
+                                </chart:DoughnutSeries.CenterView>
+
+                                <chart:DoughnutSeries.DataMarker>
+                                    <chart:ChartDataMarker>
+                                        <chart:ChartDataMarker.LabelTemplate>
+                                            <DataTemplate>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label FontSize="12" TextColor="White" Text="{Binding YValue, StringFormat='{0}'}" />
+                                                    <Label FontSize="12" TextColor="White" Text="{Binding XValue}" />
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </chart:ChartDataMarker.LabelTemplate>
+                                    </chart:ChartDataMarker>
+                                </chart:DoughnutSeries.DataMarker>
+
+                            </chart:DoughnutSeries>
+                        </chart:SfChart.Series>
+                    </chart:SfChart>
+                </Grid>
+            </Frame>
+
+            <!--End of Chart-->
+
+            <!-- Brightness Panel-->
+            <Frame x:Name="panelBrightness" StyleClass="Card" BackgroundColor="White" WidthRequest="380" IsVisible="False" 
+            HorizontalOptions="Center"  VerticalOptions="Center" 
+            Padding="20">
+                <Grid>
+
+                    <StackLayout>
+                        <ContentView ControlTemplate="{StaticResource CloseLayout}"/>
+                        <StackLayout  Padding="20">
+                            <Label  FontSize="15" FontAttributes="Bold" Margin="0,0,0,6" Grid.Row="0" Text="سطوع الخريطه"></Label>
+
+                            <Slider MinimumTrackColor="YellowGreen" MaximumTrackColor="Red" x:Name="sliderBrightness"  Grid.Row="1" Minimum="-100" Maximum="100" ValueChanged="Slider_ValueChanged"></Slider>
+
+                            <!--<Label  FontSize="15" FontAttributes="Bold" Margin="0,0,0,6" Grid.Row="2" Text="التباين"></Label>
+
+                <Slider MinimumTrackColor="YellowGreen" MaximumTrackColor="Red" x:Name="sliderContrast"  Grid.Row="3" Minimum="-100" Maximum="100" ValueChanged="SliderContrast_ValueChanged"></Slider>-->
+
+                            <Label  FontSize="15" FontAttributes="Bold" Margin="0,0,0,6" Grid.Row="2" Text="الشفافية"></Label>
+
+                            <Slider  MinimumTrackColor="YellowGreen" MaximumTrackColor="Red" x:Name="sliderOpacity"  Grid.Row="3" Minimum="0" Maximum="0.99" ValueChanged="SliderOpacity_ValueChanged"></Slider>
+
+                            <!--<Button  Grid.Row="4" x:Name="btnClosebrightness" Text="تم" StyleClass="Green" Clicked="BtnClosebrightness_Clicked"></Button>-->
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+            <!-- End Brightness Panel-->
+
+            <!--Map Loading -->
+            <Image HorizontalOptions="Center" VerticalOptions="Center" x:Name="imgLoading"  >
+
+                <Image.Source>
+                    <OnPlatform x:TypeArguments="FileImageSource">
+                        <On Platform="Android" Value="loading.gif" ></On>
+                        <On Platform="UWP"  Value="images/loading.gif"></On>
+                    </OnPlatform>
+                </Image.Source>
+            </Image>
+            <!-- End Map Loading-->
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

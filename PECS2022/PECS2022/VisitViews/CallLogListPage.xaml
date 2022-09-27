@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:JUSS2Style="clr-namespace:PECS2022.StyleSheets" xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             x:Class="PECS2022.VisitViews.CallLogListPage"   NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Picker">
+                <Setter Property="FlowDirection" Value="RightToLeft"/>
+            </Style>
+            <Style TargetType="Editor">
+                <Setter Property="FlowDirection" Value="RightToLeft"/>
+            </Style>
+            <JUSS2Style:PCBSGridStyle x:Key="dark" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+
+            <Grid.Padding>
+                <OnPlatform x:TypeArguments="Thickness" Default="{StaticResource MasterDetailPaddingRL}">
+                    <On Platform="Android" Value="{StaticResource MasterDetailPaddingLR}"/>
+                </OnPlatform>
+            </Grid.Padding>
+
+            <Frame StyleClass="Card">
+                <StackLayout>
+                    <Frame Style="{StaticResource FrameBlue}" MinimumHeightRequest="50">
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+
+                            <Label VerticalTextAlignment="Center"  HorizontalTextAlignment="Center" Grid.Column="1" Grid.Row="0" Text="سجل الاتصال"  Style="{StaticResource LabelSection}"></Label>
+
+
+
+                        </Grid>
+
+                    </Frame>
+
+                    <!--GridTapped="dataGrid_GridTapped" GridLongPressed="dataGrid_GridLongPressed"-->
+                    <!--<RelativeLayout x:Name="relativeLayout"    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">-->
+                    <syncfusion:SfDataGrid    AllowResizingColumn="True"  GridStyle="{StaticResource dark}" x:Name="dataGrid" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSizer="Star" AllowTriStateSorting="True" AllowEditing="False" AllowSorting="True" AutoGenerateColumns="False" >
+
+                            <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                                <syncfusion:GridTextColumn HeaderText="محاولة الاتصال"    
+                                   MappingName="C1" />
+                                <syncfusion:GridTextColumn HeaderText="رقم التلفون "
+                                   MappingName="C2" />
+                                <syncfusion:GridTextColumn HeaderText="وقت الاتصال"
+                                   MappingName="C3" />
+                                <syncfusion:GridTextColumn HeaderText="هل تم الرد على الاتصال"    
+                                   MappingName="C4" />
+                                <syncfusion:GridTextColumn HeaderText="هل المجيب رب الأسرة"
+                                   MappingName="C5" />
+                                <syncfusion:GridTextColumn HeaderText="اسم الشخص"
+                                   MappingName="C6" />
+                                <syncfusion:GridTextColumn HeaderText="هل وافق على إجراء المقابلة"
+                                   MappingName="C7" />
+                                <syncfusion:GridTextColumn HeaderText="إمكانية إعادة الاتصال"
+                                   MappingName="C8" />
+                                <syncfusion:GridTextColumn HeaderText="ملاحظات"
+                                   MappingName="C9" />
+
+
+                            </syncfusion:SfDataGrid.Columns>
+                        </syncfusion:SfDataGrid>
+
+                    <!--</RelativeLayout>-->
+
+                
+                    <Label></Label>
+
+
+                </StackLayout>
+
+            </Frame>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

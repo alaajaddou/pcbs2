@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PECS2022.VisitViews.VisitPageMaster" 
+             Title="Master">
+
+    <ContentPage.Content>
+        <Grid>
+
+            <Grid.Padding>
+                <OnPlatform x:TypeArguments="Thickness" Default="{StaticResource MasterDetailPaddingRL}">
+                </OnPlatform>
+            </Grid.Padding>
+
+            <Frame  StyleClass="Card">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <!--<StackLayout >-->
+                    <ListView x:Name="MenuItemsListView"  Grid.Row="0"
+              SeparatorVisibility="None"
+              HasUnevenRows="true"
+              ItemsSource="{Binding  Path=MenuItems}"
+               FlowDirection="LeftToRight">
+                        <ListView.Header>
+                            <Grid BackgroundColor="#03A9F4">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="10" x:Name="lblTitle" TextColor="White" FontAttributes="Bold" Text=""></Label>
+                            </Grid>
+                        </ListView.Header>
+
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell >
+                                    <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand"  Orientation="Horizontal">
+                                        <Image Source="{Binding ImageURL}">
+                                        </Image>
+                                        <Label VerticalOptions="StartAndExpand"   VerticalTextAlignment="Start"   Text="{Binding Title}"   FontSize="Default"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <Button StyleClass="Red"  Grid.Row="1" IsEnabled="True" x:Name="btnHome" Text="خروج من الاستمارة" Clicked="btnHome_Clicked"></Button>
+
+                    <!--</StackLayout>-->
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PECS2022.Views.SupportPage"
+              Title="{Binding Title}">
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid Padding="{StaticResource PagePadding}">
+                <ScrollView>
+                    <Frame StyleClass="Card">
+
+                        <Grid>
+                            <StackLayout x:Name="pnlDownloadData"  VerticalOptions="CenterAndExpand">
+                                <Label Text="كلمة المرور الخاصة بالدعم  الفني"  FontSize="15" FontAttributes="Bold" Margin="0,0,0,6" TextColor="Black"/>
+
+                                <Entry x:Name="txtPassword" IsPassword="True"></Entry>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+
+                                    </Grid.ColumnDefinitions>
+                                    <Button Grid.Column="0" Grid.Row="0" StyleClass="Green"  x:Name="btnLogin" Text="دخول" Clicked="btnLogin_Clicked"></Button>
+                                    
+                                </Grid>
+
+                            </StackLayout>
+
+                            <!--<StackLayout x:Name="pnlDownloadData"  IsVisible="False" Spacing="10" VerticalOptions="CenterAndExpand">
+
+                                <Label Text="تنزيل البيانات من الخادم"  FontAttributes="Bold" TextColor="Black"/>
+                                <ContentView ControlTemplate="{StaticResource Seperator_15}"/>
+
+                                <Label>المحافظة</Label>
+                                <Picker x:Name="cmbGovernorate" ItemDisplayBinding="{Binding Description}"></Picker>
+
+                                <Label>رقم الزيارة</Label>
+                                <Picker x:Name="cmbVisitNo"></Picker>
+
+                                <Label>الشهر</Label>
+                                <Picker x:Name="cmbMonth"></Picker>
+
+                                <ContentView ControlTemplate="{StaticResource Seperator_10}"/>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Button StyleClass="Green" x:Name="btnDownloadData"  HorizontalOptions="FillAndExpand" Text="تنزيل البيانات"  Clicked="btnDownloadData_Clicked"></Button>
+                                    <Button StyleClass="Red" x:Name="btnDownloadPanelBack"  HorizontalOptions="FillAndExpand" Text="رجوع"  Clicked="btnDownloadPanelBack_Clicked"></Button>
+                                </StackLayout>
+
+                            </StackLayout>-->
+
+                            <StackLayout x:Name="pnlActions"  IsVisible="False" Spacing="10" VerticalOptions="CenterAndExpand">
+                                <!--<Button Text="ارسال البيانات الى الخادم الرئيسي" x:Name="btnSendData" Clicked="btnSendData_Clicked"></Button>-->
+                                <Button Text="تنزيل البيانات من الخادم الرئيسي" x:Name="btnShowDownloadDataPanel" Clicked="btnDownloadData_Clicked"></Button>
+                                <Button  Text="نسخ احتياطي" x:Name="btnBackupData" Clicked="btnBackupData_Clicked"></Button>
+                                <!--<Button x:Name="btnCancel2" StyleClass="Red" Text="العودة الى الصفحة السابقة" Clicked="btnCancel_Clicked"></Button>-->
+                                <!--<Button x:Name="btnCancel2" StyleClass="Red" Text="رجوع" Clicked="btnCancel_Clicked"></Button>-->
+                            </StackLayout>
+                        </Grid>
+                        
+                    </Frame>
+                </ScrollView>
+            </Grid>
+            <!--<Grid  x:Name="pnlDownloadData" BackgroundColor="White" WidthRequest="700" IsVisible="True" 
+            HorizontalOptions="Center"  VerticalOptions="Center" 
+            Padding="20">
+
+                <StackLayout>
+                    <Label Text="كلمة المرور الخاصة بالدعم  الفني"  FontSize="15" FontAttributes="Bold" Margin="0,0,0,6"
+                     TextColor="Black"/>
+
+                   
+
+                    <Entry x:Name="txtPassword" IsPassword="True"></Entry>
+
+
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Grid.Row="0" StyleClass="Green" x:Name="btnLogin" Text="دخول" Clicked="btnLogin_Clicked"></Button>
+                        <Button Grid.Column="1" Grid.Row="0" x:Name="btnCancel" StyleClass="Red" Text="العودة الى الصفحة السابقة" Clicked="btnCancel_Clicked"></Button>
+                    </Grid>
+
+
+
+
+                </StackLayout>
+
+
+
+            </Grid>
+
+            <StackLayout  x:Name="pnlActions" IsVisible="False">
+
+                <ActivityIndicator x:Name="aiDownloadData"></ActivityIndicator>
+                <Button Text="تنزيل البيانات من الخادم الرئيسي" Margin="20" x:Name="btnDownloadData" Clicked="btnDownloadData_Clicked"></Button>
+
+                <Button  Text="نسخ احتياطي" Margin="20" x:Name="btnBackupData" Clicked="btnBackupData_Clicked"></Button>
+
+
+
+
+                <Button x:Name="btnCancel2" StyleClass="Red" Text="العودة الى الصفحة السابقة" Clicked="btnCancel_Clicked"></Button>
+            </StackLayout>-->
+
+            <ContentView ControlTemplate="{StaticResource LoadingLayout}" IsVisible="{Binding IsBusy}" x:Name="loadPage"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,34 @@
+﻿^ContentPage {
+    background-color: #ffffff;
+    padding: 0;
+}
+button {
+    background-color: #2454e5;
+    color: white;
+}
+    button.Red {
+        background-color: #ff0030;
+        text-align: right;
+        color: white;
+    }
+
+
+
+
+    button.Green {
+        background-color: #1bdb2d;
+        color: white;
+    }
+
+
+    button.Organge {
+        background-color: orange;
+        color: white;
+    }
+
+    button.Blue {
+        background-color: #2470e8;
+        color: white;
+    }
+
+

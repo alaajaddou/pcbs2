@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="PECS2022.Views.LoginPage"
+             >
+
+    <NavigationPage.TitleView>
+        <Label Text="{Binding Title}" Style="{StaticResource LabelSection}"  HorizontalTextAlignment="Center"/>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content >
+
+        <Grid>
+            <Grid Padding="{StaticResource PagePadding}">
+                <ScrollView>
+                    <Frame StyleClass="Card">
+
+                        <StackLayout  VerticalOptions="Center" Spacing="10">
+                            <Image HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="140">
+                                <Image.Source>
+                                    <OnPlatform x:TypeArguments="FileImageSource">
+                                        <On Platform="Android" Value="logo.png" ></On>
+                                        <On Platform="UWP"  Value="images/logo.png"></On>
+                                    </OnPlatform>
+                                </Image.Source>
+                            </Image>
+
+                            <Label x:Name="lblVersion" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" Margin="0,0,0,20"/>
+                            <Label   FlowDirection="RightToLeft">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        
+                                        <Span TextColor="Transparent" Text="أ" ></Span>
+                                        <Span  TextColor="{StaticResource PrimaryColor}" Text=" &#xf007; اسم المستخدم" FontAttributes="Bold" FontFamily="{StaticResource FontAwesomeSolid}"></Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                                
+                            </Label>
+                           
+                            <Entry x:Name="UserName" Keyboard="Numeric"/>
+                            
+                            <Label   FlowDirection="RightToLeft">
+                                <Label.FormattedText>
+                                    <FormattedString>
+
+                                        <Span TextColor="Transparent" Text="أ" ></Span>
+                                        <Span TextColor="{StaticResource PrimaryColor}"  Text=" &#xf084; كلمة المرور" FontAttributes="Bold" FontFamily="{StaticResource FontAwesomeSolid}"></Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+
+                            </Label>
+                            <Entry x:Name="Password" Keyboard="Numeric" IsPassword="true" />
+
+                            <Grid RowSpacing="30" HeightRequest="100">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button StyleClass="Green"  x:Name="LoginButton" Grid.Row="0"  Grid.Column="0" Text="تسجيل الدخول" Clicked="LoginClicked" VerticalOptions="FillAndExpand" />
+                                <Button StyleClass="Red" x:Name="CloseButton" Grid.Row="0"  Grid.Column="1" Text="خروج" Clicked="OnApplicationClose"  VerticalOptions="FillAndExpand"/>
+                                <Label Grid.Row="1" Grid.Column="0" x:Name="lblSettings" Text="الاعدادات الرئيسية" >
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="SettingsButtonTapped" NumberOfTapsRequired="1" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                </ScrollView>
+
+            </Grid>
+
+            <ContentView ControlTemplate="{StaticResource LoadingLayout}" IsVisible="{Binding IsBusy}"/>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

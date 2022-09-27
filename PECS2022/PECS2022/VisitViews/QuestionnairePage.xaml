@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PECS2022.VisitViews.QuestionnairePage"
+             NavigationPage.HasNavigationBar="False"
+             StyleClass="MasterDetail">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Picker">
+                <Setter Property="FlowDirection" Value="RightToLeft"/>
+            </Style>
+            <Style TargetType="Editor">
+                <Setter Property="FlowDirection" Value="RightToLeft"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <ContentPage.Content>
+
+        <Grid>
+
+            <Grid.Padding>
+                <OnPlatform x:TypeArguments="Thickness" Default="{StaticResource MasterDetailPaddingRL}">
+                    <On Platform="Android" Value="{StaticResource MasterDetailPaddingLR}"/>
+                </OnPlatform>
+            </Grid.Padding>
+
+            <Frame StyleClass="Card">
+                <Grid>
+
+                    <Grid>
+                        <Label x:Name="lblNoQuestions" Text="لا يوجد اسئلة في هذا القسم" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" IsVisible="False"/>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="90" ></RowDefinition>
+                            <RowDefinition Height ="*" ></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <StackLayout x:Name="pnlComment" BackgroundColor="#cbcbcb"  Grid.Column="0" Grid.Row="0" Padding="5" VerticalOptions="CenterAndExpand">
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <ScrollView Grid.Column="0">
+                                    <Label TextColor="Black"  x:Name="lblComments" FontSize="Default"  FontAttributes="Bold" LineBreakMode="WordWrap" >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="LabelTapGestureRecognizer_Tapped" NumberOfTapsRequired="2"  ></TapGestureRecognizer>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </ScrollView>
+
+                                <Grid x:Name="pnlHeader_ScrollControls" Grid.Column="1">
+
+                                    <StackLayout Orientation="Horizontal" HeightRequest="30" Spacing="2" VerticalOptions="CenterAndExpand">
+                                        <Button x:Name="btnExpandHeader"  StyleClass="Green" Padding="3,1,3,1" FontSize="17" Text="(+) العناوين" Clicked="btnExpandHeader_Clicked"/>
+                                        <Button x:Name="btnDecreaseHeader" StyleClass="Red" Padding="3,1,3,1" FontSize="17" Text="(-) العناوين" Clicked="btnDecreaseHeader_Clicked"/>
+                                        <Button x:Name="btnExpandQuestion" IsVisible="False" StyleClass="Green"  Padding="3,1,3,1" Text="توسيع الصفحة"  FontSize="17" Clicked="btnExpandQuestion_Clicked"/>
+                                    </StackLayout>
+
+                                </Grid>
+                            </Grid>
+
+
+                        </StackLayout>
+
+
+                        <Grid Grid.Column="0" Grid.Row="1" BackgroundColor="#6fd0fb" x:Name="pnlDesc" Padding="5" >
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition  Width="1.5*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Orientation="Vertical"  Grid.Column="0" Grid.Row="0">
+                                <Label x:Name="lblDescription"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"  LineBreakMode="WordWrap" FontAttributes="Bold" FontSize="Default">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="LabelTapGestureRecognizer_Tapped" NumberOfTapsRequired="2"  ></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+
+
+                            <StackLayout Orientation="Horizontal"  Grid.Column="1" Grid.Row="0"  Padding="0" Margin="0" HorizontalOptions="End">
+                                <Grid ColumnSpacing="1">
+                                    <Button x:Name="btnPrvious"  Clicked="btnPrvious_Clicked" Grid.Column="0"  CornerRadius="45" Text="&#xf0a9;" FontAttributes="Bold" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="25"></Button>
+                                    <Button x:Name="btnNext"  Clicked="btnNext_Clicked" Grid.Column="1"  CornerRadius="45" Text="&#xf0a8;" FontAttributes="Bold" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="25"></Button>
+                                    <Button x:Name="btnSaveSection" StyleClass="Green"   Clicked="btnSaveSection_Clicked" CornerRadius="45" Grid.Column="2"  Text="&#xf0c7;" FontAttributes="Bold" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="25"></Button>
+                                    <Button x:Name="btnSavePartialComplete" StyleClass="Orange"  Clicked="btnSavePartialComplete_Clicked" CornerRadius="45" Grid.Column="3" Text="&#xf0c7;" FontAttributes="Bold" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="25"></Button>
+                                </Grid>
+
+                            </StackLayout>
+                        </Grid>
+
+
+                        <Grid Grid.Row="2">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height ="*" ></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid x:Name="pnlContentsHeader"  Grid.Row="0"/>
+
+                            <ScrollView x:Name="pnlContentsScroll" Grid.Row="1" IsTabStop="False">
+                                <StackLayout>
+                                <StackLayout x:Name="pnlContents" Orientation="Vertical">
+                                </StackLayout>
+                                    <Label HeightRequest="50"></Label>
+                                </StackLayout>
+                            </ScrollView>
+                        </Grid>
+
+                    </Grid>
+
+                </Grid>
+            </Frame>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

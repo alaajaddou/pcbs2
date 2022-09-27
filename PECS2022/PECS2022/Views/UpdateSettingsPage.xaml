@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PECS2022.Views.UpdateSettingsPage"  NavigationPage.HasNavigationBar="True"
+             Title="{Binding Title}">
+
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid Padding="{StaticResource PagePadding}">
+                <ScrollView>
+                    <Frame StyleClass="Card">
+                        <StackLayout VerticalOptions="CenterAndExpand" >
+                            <Image HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="140">
+                                <Image.Source>
+                                    <OnPlatform x:TypeArguments="FileImageSource">
+                                        <On Platform="Android" Value="logo.png" ></On>
+                                        <On Platform="UWP"  Value="images/logo.png"></On>
+                                    </OnPlatform>
+                                </Image.Source>
+                            </Image>
+
+                            <ContentView ControlTemplate="{StaticResource Seperator_10}"/>
+                            <Label Text="{Binding User.FullName}" HorizontalOptions="CenterAndExpand" FontSize="20" x:Name="lblResearcher"/>
+                            <ContentView ControlTemplate="{StaticResource Seperator_50}"/>
+                            <Button  Text="نقل البيانات"  x:Name="btnSendData" Clicked="btnSendData_Clicked" StyleClass="Green" />
+                            <ContentView ControlTemplate="{StaticResource Seperator_10}"/>
+                            <Button  Text="تحديث العينة" x:Name="btnUpdateSample" Clicked="btnUpdateSample_Clicked" StyleClass="Green" />
+                            <ContentView ControlTemplate="{StaticResource Seperator_10}"/>
+                            <Button Text="تحديث جميع الاعدادات"  x:Name="btnUpdateAllSettings" Clicked="btnUpdateAllSettings_Clicked" StyleClass="Green" />
+                            <ContentView ControlTemplate="{StaticResource Seperator_10}"/>
+                            <Button IsVisible="True" Text="الدعم الفني" StyleClass="Green" x:Name="btnSupport" Clicked="btnSupport_Clicked" />
+                            <ContentView ControlTemplate="{StaticResource Seperator_10}"/>
+                            <!--<Button x:Name="LogoutButton" StyleClass="Red" Text="تسجيل الخروج" Clicked="LogOutClicked"/>-->
+
+                        </StackLayout>
+                    </Frame>
+                </ScrollView>
+
+            </Grid>
+
+            <ContentView ControlTemplate="{StaticResource LoadingLayout}" IsVisible="{Binding IsBusy}" />
+        </Grid>
+
+
+    </ContentPage.Content>
+</ContentPage>
